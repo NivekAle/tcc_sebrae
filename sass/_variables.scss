@@ -1,0 +1,20 @@
+$system: (
+	"primary": #f50a45,
+	"secondary": #0080ff,
+	"text": #cfcfcf,
+	"gray": #959595,
+	"black": #333333,
+	"background-page": #242424,
+
+	// others
+	"primary-50": #f50a4554,
+	"secondary-50": #0080ff4f,
+	"black-20": #404040,
+	"gray-50": rgb(126 120 120),
+);
+
+:root {
+	@each $variable_name, $value in $system {
+		--#{$variable_name}: #{$value};
+	}
+}

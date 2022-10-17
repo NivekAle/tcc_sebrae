@@ -1,0 +1,27 @@
+.form {
+	position: relative;
+	background-color: var(--black-20);
+	padding: 30px;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	// align-items: center;
+	justify-content: center;
+	gap: 5px;
+	&__head {
+		text-align: center;
+	}
+
+	&__body {
+		position: relative;
+		background-color: var(--background-page);
+		border-radius: 12px;
+		padding: 30px;
+	}
+
+	&__component {
+	}
+	&__footer {
+		text-align: center;
+	}
+}

@@ -1,0 +1,15 @@
+@import "../variables";
+@import "../components/produto-card";
+@import "../components/breadcrumb";
+@import "../components/navbar";
+
+body {
+	background-color: var(--black);
+}
+
+.produto-banner {
+	background-color: var(--background-page);
+	padding: 60px 0px;
+	color: var(--text);
+	margin: 0px 0px 30px 0px;
+}

@@ -1,0 +1,63 @@
+.produto-card {
+	height: 100%;
+	overflow: hidden;
+	border-radius: 8px;
+	border: 1px solid var(--gray);
+	display: flex;
+	flex-direction: column;
+	align-items: initial;
+	justify-content: space-between;
+	&__header {
+	}
+	&__body {
+		color: var(--text);
+		padding: 15px 10px 0px;
+	}
+	// remover depois
+	&__image {
+		width: 100%;
+		height: 200px;
+		background-color: var(--gray);
+	}
+	&__title {
+		letter-spacing: 0.5px;
+		margin: 0px 0px 7px 0px;
+	}
+	&__description {
+		margin: 0px 0px 7px 0px;
+	}
+	&__price {
+		margin: 0px 0px 7px 0px;
+		font-weight: 700;
+		letter-spacing: 0.5px;
+		font-size: 18px;
+	}
+	&__like {
+		color: var(--gray);
+		font-weight: 500;
+	}
+	&__link {
+		display: block;
+		width: max-content;
+		background-color: var(--primary);
+		padding: 5px 10px;
+		border-radius: 6px;
+		color: var(--text);
+		text-decoration: none;
+		font-size: 16px;
+		text-transform: capitalize;
+		transition: all 0.3s;
+		&:hover {
+			color: var(--gray);
+			background-color: var(--primary-50);
+		}
+	}
+	&__footer {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		color: var(--text);
+		padding: 15px 10px;
+	}
+}

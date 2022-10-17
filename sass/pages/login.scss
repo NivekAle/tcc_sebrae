@@ -1,0 +1,38 @@
+.login-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 40%;
+	margin: auto;
+}
+
+.error {
+	// position: absolute;
+	i {
+		color: red;
+		&:hover ~ span {
+			transition: all 0.3s;
+			display: block;
+		}
+	}
+	.login-error {
+		display: none;
+		position: absolute;
+		top: -37px;
+		width: max-content;
+		right: 0;
+		background-color: #ff454552;
+		padding: 5px 10px;
+		color: #ff6767;
+		border-radius: 4px;
+		transition: all 0.3s;
+		font-size: 13px;
+	}
+}
+
+.component-input:has(.error i) {
+	border: 2px solid #ff6767 !important;
+	outline: 5px solid #ff67673f;
+}

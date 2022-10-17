@@ -1,0 +1,23 @@
+.box-servico {
+	background-color: var(--black);
+	border-radius: 8px;
+	padding: 30px 10px;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	i {
+		font-size: 40px;
+		margin-bottom: 10px;
+		color: var(--text);
+	}
+	&__title {
+		color: var(--text);
+	}
+
+	&:hover {
+		.box-servico__title,
+		i {
+			color: var(--primary);
+		}
+	}
+}

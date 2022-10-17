@@ -1,0 +1,35 @@
+.component-input {
+	border: 2px solid var(--secondary) !important;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px 10px;
+	border-radius: 6px;
+	gap: 10px;
+	position: relative;
+	background-color: #222 !important;
+	transition: all 0.3s;
+	outline: 0px solid rgba(238, 238, 238, 0);
+	margin: 5px 0px;
+	&:hover {
+		box-shadow: unset;
+	}
+
+	&:focus-within {
+		color: var(--text);
+		outline: 5px solid var(--secondary-50);
+	}
+
+	// label {
+	// 	margin-bottom: 30px;
+	// }
+
+	&__entry {
+		background-color: transparent;
+		border: none;
+		color: var(--text);
+		width: 100%;
+		outline: none;
+	}
+}
