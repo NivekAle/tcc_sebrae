@@ -5,25 +5,27 @@ namespace App\Controllers;
 use App\Database\Database;
 use App\Models\Produto;
 
-require('A:\php\tech_solution.com.br\vendor\autoload.php');
+require("d:/projects/php/tcc/vendor/autoload.php");
 
 class ProdutoController
 {
 
-	public static function NovoProduto($novo_produto)
+	public static function RemoverProduto($id_produto_remover)
 	{
-		$produto = new Produto;
-		$produto->nome = $novo_produto["produto_nome"];
-		$produto->descricao =  $novo_produto["produto_descricao"];
-		$produto->preco =  $novo_produto["produto_preco"];
-		$produto->vendedor_id =  $novo_produto["vendedor_id"];
-
-		$produto->Cadastrar();
-		// var_dump($produto);
-		// die();
+		(new Database("produtos"))->update(
+			"id = $id_produto_remover",
+			[
+				"status" => 0
+			]
+		);
 	}
-
-
 }
 
-ProdutoController::NovoProduto($_POST["novo_produto"]);
+switch ($_POST) {
+	case isset($_POST["remover-produto"]):
+		ProdutoController::RemoverProduto($_POST["remover-produto"]);
+		break;
+	default:
+		header("Location: http://localhost/tcc/");
+		break;
+}

@@ -1,0 +1,24 @@
+$system: (
+	"primary": #f50a45,
+	"secondary": #0080ff,
+	"text": #cfcfcf,
+	"text-dark": #333,
+	"gray": #959595,
+	"black": #333333,
+	"background-page": #242424,
+
+	"alternate-black" : #141c2c,
+
+	// others
+	"primary-50": #f50a4554,
+	"secondary-50": #0080ff4f,
+	"black-20": #404040,
+	"gray-50": rgb(126 120 120),
+	"primary-linear-gradient": linear-gradient(90deg, rgba(245, 10, 69, 1) 0%, rgba(0, 128, 255, 1) 100%)
+);
+
+:root {
+	@each $variable_name, $value in $system {
+		--#{$variable_name}: #{$value};
+	}
+}

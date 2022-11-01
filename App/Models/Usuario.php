@@ -4,11 +4,10 @@ namespace App\Models;
 
 use App\Database\Database;
 
-require('A:\php\tech_solution.com.br\vendor\autoload.php');
+require('d:/projects/php/tcc/vendor/autoload.php');
 
 class Usuario
 {
-
 	public $id;
 	public $nome;
 	public $sobrenome;

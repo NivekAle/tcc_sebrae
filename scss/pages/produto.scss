@@ -1,0 +1,11 @@
+@import "../variables";
+@import "../components/produto-card";
+@import "../components/navbar";
+
+.produto {
+	&__image {
+		width: 100%;
+		height: 400px;
+		background-color: #eee;
+	}
+}

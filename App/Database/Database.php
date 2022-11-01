@@ -5,7 +5,8 @@ namespace App\Database;
 use \PDO;
 use PDOException;
 
-require('A:\php\school\vendor\autoload.php');
+require('d:/projects/php/tcc/vendor/autoload.php');
+// require('d:/projects/php/tcc/vendor/autoload.php');
 
 class Database
 {
@@ -70,6 +71,8 @@ class Database
 
 		$query = 'SELECT ' . $fields . ' FROM tech_solutions.' . $this->table  . $where . $order . $limit;
 
+		// echo $query;
+		// die();
 		return $this->Execute($query);
 	}
 
@@ -95,10 +98,25 @@ class Database
 
 	public function join($id)
 	{
-		$query = "SELECT vendedores.nome,
-		vendedores.sobrenome,
-		vendedores.email,
-			vendedores.telefone FROM `vendedores` join `produtos` on `produtos`.`vendedor_id` = `vendedores`.`id` where `produtos`.`id` = $id";
+		// $fields = ""
+
+		$query = "SELECT vendedores.nome_completo,
+		vendedores.email,vendedores.pais FROM `vendedores` join `produtos` on `produtos`.`id_vendedor` = `vendedores`.`id` where `produtos`.`id` = $id";
+
+		// echo $query;
+		// die();
 		return $this->Execute($query);
 	}
+
+	public function joinCategoria($id)
+	{
+		// $fields = ""
+
+		$query = "SELECT Categorias.nome,Categorias.id FROM `Produtos` join `Categorias` on `Categorias`.`id` = `Produtos`.`id_categoria` where `produtos`.`id` = $id";
+
+		// echo $query;
+		// die();
+		return $this->Execute($query);
+	}
+
 }

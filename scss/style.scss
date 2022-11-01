@@ -1,0 +1,23 @@
+.sistema {
+	background-image: url("http://localhost/tcc/public/images/background-page.jpg");
+	// background-image: url("public/images/background-page.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+	backdrop-filter: brightness(0.5);
+
+	& * {
+		color: #fff;
+		& a {
+			text-decoration: none;
+			font-weight: 100;
+			&:hover {
+				color: var(--gray);
+			}
+		}
+		p {
+			margin: 8px 0px;
+		}
+	}
+}

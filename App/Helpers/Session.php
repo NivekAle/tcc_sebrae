@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-require('A:\php\tech_solution.com.br\vendor\autoload.php');
+require('d:/projects/php/tcc/vendor/autoload.php');
 
 interface iSession
 {
@@ -20,16 +20,16 @@ class Session implements iSession
 		$_SESSION["sessao_usuario"] = $dados_usuario; // Model Usuario/Vendedor
 
 		// cria um prop para o objeto Vendedor, para futuramente verificar depois;
-		if (property_exists($dados_usuario, "cnpj")) {
-			$_SESSION["sessao_usuario"]->vendedor = true;
-		}
+		// if (property_exists($dados_usuario, "cnpj")) {
+		// 	$_SESSION["sessao_usuario"]->vendedor = true;
+		// }
 	}
 
 	public static function RemoverSessao()
 	{
 		session_start();
 		session_destroy();
-		header("Location: http://localhost/tech_solution.com.br/");
+		header("Location: http://localhost/tcc/");
 		exit();
 	}
 
@@ -37,7 +37,7 @@ class Session implements iSession
 	{
 		session_start();
 		if (empty($_SESSION["sessao_usuario"])) {
-			header("Location: http://localhost/tech_solution.com.br/");
+			header("Location: http://localhost/tcc/");
 			exit();
 		}
 	}
