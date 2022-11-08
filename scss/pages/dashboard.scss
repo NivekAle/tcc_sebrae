@@ -1,0 +1,19 @@
+@import "../variables";
+
+.dashboard {
+	.box {
+		width: 100%;
+		background-color: #eee;
+		padding: 10px;
+		border-radius: 12px;
+		&__content {
+			border-left: 3px solid var(--primary);
+		}
+		&__title {
+			margin-left: 10px;
+		}
+		&__output {
+			margin-left: 10px;
+		}
+	}
+}

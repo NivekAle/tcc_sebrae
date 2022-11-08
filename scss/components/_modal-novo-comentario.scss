@@ -1,0 +1,47 @@
+.modal-novo-comentario {
+	display: none;
+	&.open {
+		display: block !important;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #3838386b;
+	}
+	.modal-dialog {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+	.modal-content {
+		width: 50%;
+		background-color: var(--white);
+		padding: 20px;
+		border-radius: 6px;
+		gap: 10px;
+	}
+	textarea {
+		padding: 10px;
+		border: 1px solid var(--secondary);
+		border-radius: 6px;
+		display: block;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0px 10px;
+		outline: 3px solid transparent;
+		transition: all 0.3s ease-in-out;
+		color: var(--text-black);
+		&:focus-within {
+			outline: 3px solid var(--secondary-50);
+		}
+	}
+	.modal-footer {
+		gap: 10px;
+	}
+}

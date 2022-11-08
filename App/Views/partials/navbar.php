@@ -1,7 +1,9 @@
-<header class="header">
+<header class="header-nav">
 	<div class="container">
 		<nav class="navbar">
-			<a href="" class="navbar__logo">Tech Solutions</a>
+			<a href="" class="navbar__logo">
+				<img src="http://localhost/tcc/public/images/logo.png" alt="" width="30px">
+			</a>
 			<ul class="navbar__list">
 				<li class="navbar__item">
 					<a href="http://localhost/tcc/app/Views/Produtos/index.php" class="navbar__link">Produtos</a>
@@ -17,7 +19,10 @@
 						<a href="http://localhost/tcc/app/Views/Produtos/configurações.php">Configurações</a>
 					</li>
 					<li>
-						<a href="http://localhost/tcc/sair.php">Sair</a>
+						<a href="http://localhost/tcc/sair.php">
+							<i class="fas fa-sign-out-alt"></i>
+							Sair
+						</a>
 					</li>
 				</ul>
 			</div>

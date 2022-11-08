@@ -119,4 +119,32 @@ class Database
 		return $this->Execute($query);
 	}
 
+	public function pegarComentarios($id_produto)
+	{
+		$query = "SELECT `Comentarios`.`criado_em`, `Comentarios`.`conteudo`, `Usuarios`.`nome_completo` ";
+		$query .= " FROM " .  $this->table . " JOIN Produtos ON Produtos.id = Comentarios.id_produto JOIN Usuarios ON Usuarios.id = Comentarios.id_usuario WHERE Produtos.id = $id_produto";
+		// echo $query;
+		// die();
+		return $this->Execute($query);
+	}
+
+	public function pegarTodasAsImagensProduto($id_produto)
+	{
+		$query = "SELECT Imagens.id, Imagens.caminho, Imagens.id_produto from Imagens JOIN Produtos on Produtos.id = Imagens.id_produto WHERE Produtos.id = $id_produto";
+		return $this->Execute($query);
+	}
+
+	public function produtosVendedor($id_vendedor) {
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Produtos.status ,Imagens.caminho
+		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id_vendedor = $id_vendedor GROUP BY Imagens.id_produto";
+
+		return $this->Execute($query);
+	}
+
+	public function pegarProdutos()
+	{
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id GROUP BY Imagens.id_produto;";
+
+		return $this->Execute($query);
+	}
 }

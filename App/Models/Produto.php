@@ -32,19 +32,22 @@ class Produto
 	public static function PegarProdutos($where = null, $order = null, $limit = null)
 	{
 		return (new Database('produtos'))->select("status = 1", $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+		// return (new Database("produtos"))->pegarProdutos()->fetchAll();
 	}
 
 	public function Cadastrar()
 	{
 		$db = new Database('produtos');
-		$db->insert(
+		$this->id = $db->insert(
 			[
 				"nome" => $this->nome,
 				"descricao" => $this->descricao,
 				"preco" => $this->preco,
-				"vendedor_id" => $this->vendedor_id,
+				"id_vendedor" => $this->id_vendedor,
+				"id_categoria" => $this->id_categoria,
 			]
 		);
+		return $this;
 	}
 
 	// pegar um unico produto

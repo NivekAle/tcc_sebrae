@@ -39,12 +39,7 @@ if (!empty($_GET["id"])) {
 <body class="">
 
 	<!-- Verificando se é um usuario ou um vendedor -->
-	<?php if (property_exists($_SESSION["sessao_usuario"], "cnpj")) {
-		require_once("../partials/navbar-vendedor.php");
-	} else {
-		require_once("../partials/navbar.php");
-	}
-	?>
+	<?php property_exists($_SESSION["sessao_usuario"], "cnpj") ? require_once("../partials/navbar-vendedor.php") : require_once("../partials/navbar.php");  ?>
 
 	<main>
 

@@ -1,0 +1,14 @@
+@import "../variables";
+@import "../components/input";
+@import "../components/button";
+
+.cadastro-usuario {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+
+	&__content {
+		width: 70%;
+	}
+}

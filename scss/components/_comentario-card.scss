@@ -1,0 +1,18 @@
+.comentario-card {
+	border: 1px solid var(--gray);
+	border-radius: 6px;
+	padding: 10px;
+	margin: 15px 0px;
+	&__header {
+		display: flex;
+		flex-direction: row;
+		align-items: baseline;
+		justify-content: space-between;
+	}
+	&__title {
+		text-align: end;
+	}
+	&__created {
+		color: var(--gray-50);
+	}
+}

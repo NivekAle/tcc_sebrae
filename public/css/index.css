@@ -1,15 +1,17 @@
 :root {
   --primary: #f50a45;
   --secondary: #0080ff;
-  --text: #cfcfcf;
+  --text: #eee;
   --text-dark: #333;
-  --gray: #959595;
+  --gray: #d8d7d7;
   --black: #333333;
+  --white: #fff;
   --background-page: #242424;
   --alternate-black: #141c2c;
+  --white-50: #f5f5f5;
   --primary-50: rgba(245, 10, 69, 0.3294117647);
   --secondary-50: rgba(0, 128, 255, 0.3098039216);
-  --black-20: #404040;
+  --black-20: rgba(64, 64, 64, 0.4862745098);
   --gray-50: rgb(126, 120, 120);
   --primary-linear-gradient: linear-gradient(90deg, rgb(245, 10, 69) 0%, rgb(0, 128, 255) 100%);
 }
@@ -29,8 +31,6 @@
       -ms-flex-pack: center;
           justify-content: center;
   height: 100vh;
-  -webkit-backdrop-filter: brightness(0.5);
-          backdrop-filter: brightness(0.5);
 }
 .initializing * > p {
   padding: 0;
@@ -46,7 +46,6 @@
 .initializing .selecionar-login__opcao {
   text-decoration: none;
   padding: 20px;
-  background-color: rgba(245, 10, 69, 0.4117647059);
   display: block;
   border-radius: 10px;
   text-align: center;

@@ -1,11 +1,9 @@
+body {
+  position: relative;
+}
+
 .sistema {
-  background-image: url("http://localhost/tcc/public/images/background-page.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-  -webkit-backdrop-filter: brightness(0.5);
-          backdrop-filter: brightness(0.5);
+  background-color: #fff;
 }
 .sistema * {
   color: #fff;
@@ -19,4 +17,65 @@
 }
 .sistema * p {
   margin: 8px 0px;
+}
+
+.header-page {
+  padding: 10px 0px;
+}
+
+#frm-pesquisa {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+#frm-pesquisa span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  border: 1px solid var(--secondary);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  overflow: hidden;
+  border-radius: 4px;
+}
+#frm-pesquisa input {
+  border: none;
+  background-color: transparent;
+  padding: 0px 10px;
+  height: 40px;
+  font-size: 13px;
+}
+#frm-pesquisa input:focus {
+  background-color: #f5f5f5;
+  outline: none;
+  border-radius: none;
+}
+#frm-pesquisa button {
+  height: 40px;
+  display: block;
+  border: none;
+  background-color: var(--secondary);
+  color: var(--text);
+  padding: 0px 20px;
 }

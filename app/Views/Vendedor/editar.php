@@ -41,12 +41,7 @@ if (!empty($_GET["id"])) {
 <body class="">
 
 	<!-- Verificando se é um usuario ou um vendedor -->
-	<?php if (property_exists($_SESSION["sessao_usuario"], "cnpj")) {
-		require_once("../partials/navbar-vendedor.php");
-	} else {
-		require_once("../partials/navbar.php");
-	}
-	?>
+	<?php property_exists($_SESSION["sessao_usuario"], "cnpj") ? require_once("../partials/navbar-vendedor.php") : require_once("../partials/navbar.php");  ?>
 
 	<main>
 
@@ -85,13 +80,20 @@ if (!empty($_GET["id"])) {
 						</div>
 					</span>
 					<span class="c-input">
-						<label class="c-input__label" for="produto-preco">Categoria</label>
-						<div class="c-input__entry">
+						<label class="c-input__label" for="produto-categoria">Categoria</label>
+						<!-- <div class="c-input__entry">
 							<i class="fas fa-hashtag"></i>
-							<input type="text" name="produto-preco" id="produto-preco" value="<?php echo  $categoria->nome;  ?>">
-						</div>
+							<input type="text" name="produto-categoria" id="produto-categoria" value="<?php echo  $categoria->nome;  ?>">
+						</div> -->
+						<select name="id_categoria" id="produto-categoria">
+							<?php foreach ($todas_categorias as $key => $item) { ?>
+								<option value="<?php echo $key; ?>">
+									<?php echo $item->nome; ?>
+								</option>
+							<?php } ?>
+						</select>
 					</span>
-					<span class="">
+					<!-- <span class="">
 						<p>
 							<i class="fas fa-tags"></i>
 							Tags
@@ -109,11 +111,10 @@ if (!empty($_GET["id"])) {
 						<button class="c-btn c-btn__secondary c-btn__secondary--outline">
 							Adicionar Tag
 						</button>
-					</span>
+					</span> -->
 					<span class="c-input">
-						<i class="fas fa-font"></i>
 						<p class="" for="produto-preco">Descrição</p>
-						<div class="w-100">
+						<div class="c-input__entry">
 							<textarea name="produto-descricao" id="produto-descricao" cols="70" rows="5"><?php echo $produto->descricao; ?></textarea>
 						</div>
 					</span>

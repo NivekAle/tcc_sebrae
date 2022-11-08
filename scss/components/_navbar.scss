@@ -1,12 +1,13 @@
-header {
-	background-color: transparent;
+.header-nav {
+	background-color: #222;
 }
 
 .navbar {
-	height: 10vh;
+	// height: 10vh;
+	height: max-content;
 	&__logo {
 		font-size: 30px;
-		color: var(--primary);
+		color: var(--text);
 		text-decoration: none;
 	}
 	&__list {
@@ -30,8 +31,8 @@ header {
 		}
 	}
 	&__dropdown-button {
-		border: 2px solid var(--secondary);
-		color: var(--secondary);
+		border: none;
+		color: var(--text);
 		padding: 5px 15px;
 		border-radius: 30px;
 		text-transform: capitalize;
@@ -46,26 +47,28 @@ header {
 	&__dropdown {
 		display: none;
 		position: absolute;
-		background-color: var(--background-page);
+		background-color: var(--white);
 		border-radius: 8px;
 		padding: 0px;
 		list-style-type: none;
-		top: 70px;
+		top: 60px;
 		right: 0;
-		width: 300px;
+		width: 250px;
 		overflow: hidden;
-		box-shadow: 0px 1px 2px 1px #95959530;
+		box-shadow: 0px 1px 2px 1px #95959557;
+		z-index: 9999;
 		&.active {
 			display: block;
 		}
 		a {
 			text-decoration: none;
-			color: var(--text);
+			color: var(--text-black);
 			display: block;
 			padding: 10px 15px;
 			transition: all 0.1s ease-in-out;
 			&:hover {
 				background-color: var(--secondary);
+				color: var(--text);
 			}
 		}
 	}

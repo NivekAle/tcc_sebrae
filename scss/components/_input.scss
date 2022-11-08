@@ -1,5 +1,5 @@
 .c-input {
-	margin: 0px 0px 20px 0px;
+	margin: 0px 0px 15px 0px;
 	display: block;
 	&__entry {
 		// background-color: var(--alternate-black);
@@ -15,10 +15,12 @@
 		gap: 0px 10px;
 		outline: 3px solid transparent;
 		transition: all 0.3s ease-in-out;
+		color: var(--text-black);
 		&:focus-within {
 			outline: 3px solid var(--secondary-50);
 		}
 	}
+	textarea,
 	input {
 		border: none;
 		background-color: transparent;
@@ -27,7 +29,7 @@
 		width: 100%;
 	}
 	&__icon {
-		color: var(--text);
+		color: var(--text-black);
 		font-weight: 400;
 	}
 	&__label {

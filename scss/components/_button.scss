@@ -17,12 +17,13 @@
 .c-btn__secondary {
 	background-color: var(--secondary);
 	color: var(--text);
-	width: 100%;
-	padding: 5px 0px;
+	width: max-content;
+	padding: 10px 20px;
 	border-radius: 6px;
 	transition: all 0.3s ease-in-out;
 	&:hover {
-		box-shadow: 0px 1px 8px 0px #bab8b852;
+		// box-shadow: 0px 1px 8px 0px #bab8b852;
+		outline: 3px solid var(--secondary-50);
 	}
 	&.c-btn__secondary--outline {
 		background-color: unset;
@@ -33,5 +34,17 @@
 			background-color: var(--secondary);
 			color: var(--text);
 		}
+	}
+}
+
+.c-btn__neutral {
+	background-color: var(--black);
+	color: var(--text);
+	width: max-content;
+	padding: 10px 20px;
+	border-radius: 6px;
+	transition: all 0.3s ease-in-out;
+	&:hover {
+		outline: 3px solid var(--black-20);
 	}
 }

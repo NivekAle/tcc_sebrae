@@ -19,9 +19,9 @@
 					<p>
 						Escolha uma das opções para fazer login.
 					</p>
-					<p>
+					<!-- <p>
 						Entrar como :
-					</p>
+					</p> -->
 				</div>
 				<div class="selecionar-login__opcoes">
 					<div class="row">
