@@ -4,7 +4,9 @@ namespace App\Core;
 
 use App\Core\Base;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 // include_once("../Core/Base.php");
 
 class Breadcrumb
@@ -42,4 +44,3 @@ class Breadcrumb
 // 		]
 // 	]
 // );
-?>

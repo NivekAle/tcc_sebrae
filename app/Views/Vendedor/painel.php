@@ -8,7 +8,9 @@ use App\Models\Produto;
 use App\Helpers\Session;
 use App\Models\Imagem;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 Session::VerificarSessao();
 Base::IsSeller();

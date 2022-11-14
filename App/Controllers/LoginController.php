@@ -8,7 +8,14 @@ use App\Models\Usuario;
 use App\Models\Vendedor;
 use Exception;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+Session::BloquearLoginComSessao();
+
+global $teste;
+
+
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 class LoginController
 {
@@ -40,10 +47,10 @@ class LoginController
 					true
 				);
 			} else {
-				Base::Response("Atenção, login ou senha incorretos!", 0);
+				Base::Response("login ou senha incorretos!", null, 0);
 			}
 		} else {
-			Base::Response("Houve um erro ao fazer login, tente novamente mais tarde.", 0);
+			Base::Response("Houve um erro ao fazer login, tente novamente mais tarde.", null, 0);
 		}
 	}
 
@@ -71,10 +78,10 @@ class LoginController
 					true
 				);
 			} else {
-				Base::Response("Atenção, login ou senha incorretos!", 0);
+				Base::Response("login ou senha incorretos!", null, 0);
 			}
 		} else {
-			Base::Response("Houve um erro ao fazer login, tente novamente mais tarde.", 0);
+			Base::Response("Houve um erro ao fazer login, tente novamente mais tarde.", null, 0);
 		}
 	}
 
@@ -103,11 +110,3 @@ switch ($_POST) {
 		header("Location: http://localhost/tcc/");
 		break;
 }
-// if (!empty($_POST)) {
-// 	if (isset($_POST["login_usuario"])) {
-// 		LoginController::EntrarUsuario($_POST["login_usuario"]);
-// 	}
-// 	if (isset($_POST["login_vendedor"])) {
-// 		LoginController::EntrarVendedor($_POST["login_vendedor"]);
-// 	}
-// }

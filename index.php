@@ -1,46 +1,79 @@
+<?php
+
+namespace App;
+
+use App\Core\Base;
+
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
 	<?php require_once("./app/Views/partials/head.php") ?>
 	<link rel="stylesheet" href="http://localhost/tcc/public/css/index.css">
-	<title>Document</title>
+	<title> Innovament</title>
 </head>
 
-<body class="">
+<body>
 
 	<main>
-		<div class="initializing">
+		<section class="app">
 			<div class="container">
-				<div class="selecionar-login">
-					<h3>
-						Bem-vindo!
-					</h3>
-					<p>
-						Escolha uma das opções para fazer login.
-					</p>
-					<!-- <p>
-						Entrar como :
-					</p> -->
-				</div>
-				<div class="selecionar-login__opcoes">
-					<div class="row">
-						<div class="col-lg-6">
-							<a class="selecionar-login__opcao" href="http://localhost/tcc/app/Views/usuario/login.php">
-								<img width="100" src="http://localhost/tcc/public/images/vendedor-imagem.svg" alt="">
-								<p>Usuário</p>
+				<header class="app__header">
+					<img src="<?php echo Base::$url_imagens . "../images/logo.png" ?>" alt="">
+				</header>
+				<div class="app__body">
+					<h4>Diga-nos qual é a sua situação</h4>
+					<ul class="app__options">
+						<li>
+							<a href="<?php echo Base::$url_views . "Usuario/login.php" ?>">
+								<span>
+									<img src="<?php echo Base::$url_imagens . "../images/avatar-user-r.png" ?>" alt="">
+									&nbsp;
+									Sou um usuário comum
+								</span>
+								<i class="fas fa-chevron-right"></i>
 							</a>
-						</div>
-						<div class="col-lg-6">
-							<a class="selecionar-login__opcao" href="http://localhost/tcc/app/Views/vendedor/login.php">
-								<img width="100" src="http://localhost/tcc/public/images/usuario-imagem.svg" alt="">
-								<p>Vendedor</p>
+						</li>
+						<li>
+							<a href="<?php echo Base::$url_views . "Vendedor/login.php" ?>">
+								<span>
+									<img src="<?php echo Base::$url_imagens . "../images/avatar-vendedor-r.png" ?>" alt="">
+									&nbsp;
+									Você tem uma empresa ou é um vendedor
+								</span>
+								<i class="fas fa-chevron-right"></i>
 							</a>
-						</div>
-					</div>
+						</li>
+						<li>
+							<a href="<?php echo Base::$url_views . "Usuario/cadastro.php" ?>">
+								<span>
+									<img src="<?php echo Base::$url_imagens . "../images/avatar-user-r.png" ?>" alt="">
+									&nbsp;
+									Criar uma conta como usuario comum
+								</span>
+								<i class="fas fa-chevron-right"></i>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo Base::$url_views . "Vendedor/cadastro.php" ?>">
+								<span>
+									<img src="<?php echo Base::$url_imagens . "../images/avatar-vendedor-r.png" ?>" alt="">
+									&nbsp;
+									Criar uma conta como vendedor
+								</span>
+								<i class="fas fa-chevron-right"></i>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
-		</div>
+		</section>
 	</main>
 
 </body>

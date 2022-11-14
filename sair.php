@@ -4,6 +4,8 @@ namespace App;
 
 use App\Helpers\Session;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 Session::RemoverSessao();

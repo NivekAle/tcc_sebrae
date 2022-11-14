@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 interface iSession
 {
@@ -12,7 +14,7 @@ interface iSession
 	public static function BuscarSessao($id_usuario);
 }
 
-class Session implements iSession
+class Session
 {
 	public static function CriarSessao($dados_usuario)
 	{
@@ -42,7 +44,13 @@ class Session implements iSession
 		}
 	}
 
-	public static function BuscarSessao($id_usuario)
+	public static function BloquearLoginComSessao()
 	{
+		session_start();
+		if (!empty($_SESSION["sessao_usuario"])) {
+			header("Location: http://localhost/tcc/app/Views/Produtos/index.php");
+			exit();
+		}
+		
 	}
 }

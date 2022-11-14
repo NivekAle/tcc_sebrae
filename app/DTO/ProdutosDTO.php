@@ -5,7 +5,9 @@ namespace App\DTO;
 use App\Database\Database;
 use PDO;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 class ProdutosDTO
 {

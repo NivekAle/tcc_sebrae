@@ -9,12 +9,13 @@ use App\Helpers\Session;
 use App\Models\Vendedor;
 use App\Models\Comentarios;
 use App\Models\Imagem;
-use DateTime;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 Session::VerificarSessao();
-Base::IsSeller();
+// Base::IsSeller();
 
 // $todos_produtos = Produto::PegarProdutos();
 $todas_categorias = Categoria::PegarTodasCategorias();
@@ -51,34 +52,6 @@ if (!empty($_GET["id"])) {
 	<?php property_exists($_SESSION["sessao_usuario"], "cnpj") ? require_once("../partials/navbar-vendedor.php") : require_once("../partials/navbar.php");  ?>
 
 	<main>
-		<!-- <div class="hero">
-			<div class="container">
-				<div class="hero-content">
-					<h1>Projetos & Templates</h1>
-					<p>
-						foram encontrados <php echo count($todos_produtos); ?> resutlado. Escolha um para visualizar.
-					</p>
-				</div>
-			</div>
-		</div> -->
-
-		<!-- <div class="todas-categorias bg-light">
-			<div class="container">
-				<div class="row py-3">
-					<php foreach ($todas_categorias as $key=> $value) { ?>
-						<div class="col-lg-2">
-							<p class="text-center m-0">
-								<a href="<= " http://localhost/tcc/app/Views/Produtos/index.php?cat=" . $value->id ?>">
-									<= $value->nome ?>
-								</a>
-							</p>
-						</div>
-						<php } ?>
-				</div>
-			</div>
-		</div> -->
-
-
 		<header class="header-page">
 			<div class="strip">
 				<div class="container">

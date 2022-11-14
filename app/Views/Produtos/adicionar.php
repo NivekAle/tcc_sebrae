@@ -7,7 +7,7 @@ use App\Core\Breadcrumb;
 use App\Helpers\Session;
 use App\Models\Categoria;
 
-require( $_SERVER['DOCUMENT_ROOT'].'tcc/vendor/autoload.php');
+require($_SERVER['DOCUMENT_ROOT'] . 'tcc/vendor/autoload.php');
 
 Session::VerificarSessao();
 Base::IsSeller();
@@ -169,7 +169,6 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</section>
 

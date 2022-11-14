@@ -11,7 +11,9 @@ use App\Helpers\Session;
 use App\Models\Imagem;
 use App\Models\Vendedor;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 Session::VerificarSessao();
 // $todos_produtos = Produto::PegarProdutos();

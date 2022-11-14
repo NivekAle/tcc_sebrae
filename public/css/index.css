@@ -1,55 +1,35 @@
 :root {
-  --primary: #f50a45;
+  --primary: #e7295d;
+  --primary-hover: #d71549;
   --secondary: #0080ff;
-  --text: #eee;
-  --text-dark: #333;
+  --secondary-hover: #046ad0;
+  --text: #f8f8f8;
+  --text-dark: #2D2E30;
   --gray: #d8d7d7;
   --black: #333333;
   --white: #fff;
   --background-page: #242424;
   --alternate-black: #141c2c;
   --white-50: #f5f5f5;
-  --primary-50: rgba(245, 10, 69, 0.3294117647);
-  --secondary-50: rgba(0, 128, 255, 0.3098039216);
+  --primary-50: rgba(245, 10, 69, 0.1607843137);
+  --secondary-50: rgba(0, 128, 255, 0.2666666667);
   --black-20: rgba(64, 64, 64, 0.4862745098);
   --gray-50: rgb(126, 120, 120);
   --primary-linear-gradient: linear-gradient(90deg, rgb(245, 10, 69) 0%, rgb(0, 128, 255) 100%);
 }
 
-.initializing {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 100vh;
+.app {
+  background-color: #eee;
 }
-.initializing * > p {
-  padding: 0;
+.app__header {
+  padding: 20px 0px;
+  height: 20vh;
 }
-.initializing .selecionar-login {
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(6.5px);
-  -webkit-backdrop-filter: blur(6.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+.app__header img {
+  width: 200px;
 }
-.initializing .selecionar-login__opcao {
-  text-decoration: none;
-  padding: 20px;
-  display: block;
-  border-radius: 10px;
-  text-align: center;
-  height: 200px;
+.app__body {
+  height: 80vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -63,21 +43,57 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 30px 0px;
-  margin: 40px auto;
+}
+.app__body h4 {
+  margin: 10px 0px 20px 0px;
+}
+.app__options {
+  list-style-type: none;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 1px 2px 1px rgba(221, 221, 221, 0.5568627451);
+          box-shadow: 0px 1px 2px 1px rgba(221, 221, 221, 0.5568627451);
+}
+.app__options img {
+  width: 40px;
+}
+.app__options li {
+  width: 400px;
+  -webkit-box-shadow: 0px 1px 2px 1px rgba(221, 221, 221, 0.5176470588);
+          box-shadow: 0px 1px 2px 1px rgba(221, 221, 221, 0.5176470588);
+  padding: 10px;
+  margin: 15px 0px;
+  border-radius: 6px;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  background-color: #fff;
 }
-.initializing .selecionar-login__opcao:hover {
-  background-color: var(--primary);
+.app__options li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   text-decoration: none;
-  color: var(--text);
-}
-.initializing .selecionar-login__opcao img {
-  width: 150px;
-}
-.initializing .selecionar-login__opcao p {
-  font-size: 20px;
-  margin: 0;
   font-weight: 600;
+}
+.app__options li:hover {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: var(--primary-50);
+}
+.app__options li:hover a {
+  color: var(--primary) !important;
+}
+.app__options li:hover a span {
+  color: var(--primary) !important;
 }

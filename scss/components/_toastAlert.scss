@@ -1,7 +1,70 @@
-#login-user-error-alert {
+/// Toast
+
+.Toast {
 	position: absolute;
 	top: 20px;
 	right: 20px;
-	background-color: #ff4a4a;
-	border: none;
+	border-radius: 6px;
+	padding: 20px 30px;
+	background-color: #fff;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+	border-left: 5px solid var(--secondary);
+	overflow: hidden;
+	transform: translateX(calc(100% + 30px));
+	transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+	&.active {
+		transform: translateX(0%);
+	}
+
+	&-content {
+		display: flex;
+		align-items: center;
+	}
+	&-message {
+		display: flex;
+		flex-direction: column;
+		margin: 0 20px;
+	}
+
+	p {
+		margin: 0px;
+	}
+
+	#btn-close-toast {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		padding: 5px;
+		cursor: pointer;
+		opacity: 0.7;
+	}
+
+	&-progress {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 4px;
+		width: 100%;
+		background-color: #fff;
+		&::before {
+			display: none;
+			content: "";
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			height: 100%;
+			width: 100%;
+			background: var(--secondary);
+		}
+	}
+	.Toast-progress.active::before {
+		animation: progress 2s linear forwards;
+	}
+}
+
+@keyframes progress {
+	100% {
+		right: 100%;
+	}
 }

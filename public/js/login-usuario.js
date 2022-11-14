@@ -1,3 +1,5 @@
+import { Toast } from "./Toast.js";
+
 $("#frm-login-usuario").validate(
 	{
 		rules: {
@@ -10,11 +12,11 @@ $("#frm-login-usuario").validate(
 		},
 		messages: {
 			"usuario-email": {
-				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório. Por favor preencha.</span>`,
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório.</span>`,
 				email: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Insira um email válido.</span>`,
 			},
 			"usuario-senha": {
-				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório. Por favor preencha.</span>`
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório.</span>`
 			}
 		},
 		submitHandler: function (form) {
@@ -28,11 +30,18 @@ $("#frm-login-usuario").validate(
 					}
 				},
 				dataType: "json",
+				beforeSend: function () {
+					$(".c-btn c-btn__primary").data("disable", "true");
+				},
 				success: function ({ usuario, data }) {
 					if (data.permissao) {
-						window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php"
+						Toast("Redirecionando...");
+						setTimeout(() => {
+							// window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php"
+						}, 5200);
 					} else {
-						ToastAlert(data.mensagem);
+						Toast(data.mensagem);
+						// ToastAlert(data.mensagem);
 					}
 				}
 			});
@@ -43,43 +52,43 @@ $("#frm-login-usuario").validate(
 
 
 
-function ToastAlert($mensagem) {
-	const div = document.createElement("div");
-	const icon = document.createElement("i");
-	const mensagem = document.createElement("p");
-	div.classList.add("alert", "alert-danger", "d-flex", "flex-column", "justify-content-center", "gap-2");
-	div.setAttribute("id", "login-user-error-alert");
-	icon.classList.add("fas", "fa-info-circle");
-	mensagem.classList.add("m-0");
-	const content = document.createElement("div");
-	content.classList.add("d-flex", "flex-row", "align-items-center", "justify-content-center", "gap-2");
-	content.append(icon);
-	content.append(mensagem);
-	div.append(content);
-	mensagem.innerText = $mensagem;
-	if (document.body.querySelector("#login-user-error-alert") == null) {
-		document.body.appendChild(div);
-		div.animate(
-			[
-				{
-					transform: "translateZ(-1400px)",
-					opacity: "0"
-				},
-				{
-					transform: "translateZ(0)",
-					opacity: "1"
-				}
-			], {
-			duration: 200
-		});
-		setTimeout(() => {
-			const exist_element = document.getElementById("login-user-error-alert");
-			document.getElementById("body").removeChild(exist_element);
-		}, 3000);
-	}
-	else {
-		const exist_element = document.getElementById("login-user-error-alert");
-		document.getElementById("body").removeChild(exist_element);
-		document.body.appendChild(div);
-	}
-}
+// function ToastAlert($mensagem) {
+// 	const div = document.createElement("div");
+// 	const icon = document.createElement("i");
+// 	const mensagem = document.createElement("p");
+// 	div.classList.add("alert", "alert-danger", "d-flex", "flex-column", "justify-content-center", "gap-2");
+// 	div.setAttribute("id", "login-user-error-alert");
+// 	icon.classList.add("fas", "fa-info-circle");
+// 	mensagem.classList.add("m-0");
+// 	const content = document.createElement("div");
+// 	content.classList.add("d-flex", "flex-row", "align-items-center", "justify-content-center", "gap-2");
+// 	content.append(icon);
+// 	content.append(mensagem);
+// 	div.append(content);
+// 	mensagem.innerText = $mensagem;
+// 	if (document.body.querySelector("#login-user-error-alert") == null) {
+// 		document.body.appendChild(div);
+// 		div.animate(
+// 			[
+// 				{
+// 					transform: "translateZ(-1400px)",
+// 					opacity: "0"
+// 				},
+// 				{
+// 					transform: "translateZ(0)",
+// 					opacity: "1"
+// 				}
+// 			], {
+// 			duration: 200
+// 		});
+// 		setTimeout(() => {
+// 			const exist_element = document.getElementById("login-user-error-alert");
+// 			document.getElementById("body").removeChild(exist_element);
+// 		}, 3000);
+// 	}
+// 	else {
+// 		const exist_element = document.getElementById("login-user-error-alert");
+// 		document.getElementById("body").removeChild(exist_element);
+// 		document.body.appendChild(div);
+// 	}
+// }

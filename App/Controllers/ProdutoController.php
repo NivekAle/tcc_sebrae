@@ -8,7 +8,9 @@ use App\Models\Imagem;
 use App\Models\Produto;
 use Exception;
 
-require("d:/projects/php/tcc/vendor/autoload.php");
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 class ProdutoController
 {

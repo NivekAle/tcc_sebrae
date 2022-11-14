@@ -3,14 +3,14 @@
 }
 
 .c-btn__primary {
-	background-image: var(--primary-linear-gradient);
-	width: 100%;
-	padding: 5px 0px;
+	background-color: var(--primary);
+	width: max-content;
+	padding: 10px 20px;
 	border-radius: 6px;
 	transition: all 0.3s ease-in-out;
 	color: var(--text);
 	&:hover {
-		box-shadow: 0px 1px 8px 0px #bab8b852;
+		background-color: var(--primary-hover);
 	}
 }
 

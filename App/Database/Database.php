@@ -5,8 +5,12 @@ namespace App\Database;
 use \PDO;
 use PDOException;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
-// require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
+// $ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 class Database
 {
@@ -55,7 +59,7 @@ class Database
 
 		$query = 'INSERT INTO tech_solutions.' . $this->table . ' (' . implode(',', $fields) . ') values (' . implode(',', $binds) . ')';
 
-		// echo print_r(array_values($data));
+		// echo print_r($query);
 		// executa o insert;
 		$this->Execute($query, array_values($data));
 
@@ -134,7 +138,8 @@ class Database
 		return $this->Execute($query);
 	}
 
-	public function produtosVendedor($id_vendedor) {
+	public function produtosVendedor($id_vendedor)
+	{
 		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Produtos.status ,Imagens.caminho
 		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id_vendedor = $id_vendedor GROUP BY Imagens.id_produto";
 

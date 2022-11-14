@@ -4,7 +4,9 @@ use App\Core\Base;
 use App\Helpers\Session;
 use App\Models\Produto;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 Session::VerificarSessao();
 Base::IsSeller();

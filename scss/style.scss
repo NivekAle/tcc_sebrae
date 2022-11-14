@@ -1,29 +1,30 @@
+@import "./fonts";
+@import "./variables";
+
 body {
 	position: relative;
+	font-family: Poppins;
+	overflow: hidden;
 }
 
-.sistema {
-	// background-image: url("http://localhost/tcc/public/images/background-page.jpg");
-	// background-image: url("public/images/background-page.jpg");
-	// background-position: center;
-	// background-size: cover;
-	// background-repeat: no-repeat;
-	// backdrop-filter: brightness(0.5);
-	// height: 100vh;
-	background-color: #fff;
-	& * {
-		color: #fff;
-		& a {
-			text-decoration: none;
-			font-weight: 100;
-			&:hover {
-				color: var(--gray);
-			}
-		}
-		p {
-			margin: 8px 0px;
-		}
-	}
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+label {
+	color: var(--text-dark);
+}
+
+p,
+a,
+span,
+label {
+	font-size: 14px;
 }
 
 .header-page {

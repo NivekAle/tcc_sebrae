@@ -6,7 +6,9 @@ use App\Models\Categoria;
 use App\Models\Produto;
 use App\Helpers\Session;
 
-require('d:/projects/php/tcc/vendor/autoload.php');
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 Session::VerificarSessao();
 
 $todas_categorias = Categoria::PegarTodasCategorias();

@@ -1,0 +1,107 @@
+@import "../variables";
+@import "../components/button";
+@import "../components/input";
+
+.app {
+	background-color: #ededed;
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+	}
+
+	&__block {
+		border-radius: 6px;
+		// overflow: hidden;
+		box-shadow: 0px 1px 2px 1px #b3b3b37d;
+	}
+
+	&__header {
+		padding: 20px;
+		background-color: #fff;
+		img {
+			width: 200px;
+		}
+	}
+
+	&__body {
+		background-color: #fff;
+		padding: 20px;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0;
+		gap: 10px;
+	}
+
+	.opcao-2,
+	.opcao-1 {
+		list-style: none;
+		width: 50%;
+		text-align: center;
+		label {
+			display: block;
+			color: var(--primary);
+			font-weight: 600;
+			padding: 10px;
+			border-radius: 6px;
+			border: 1px solid var(--primary);
+			&:hover {
+				color: var(--text);
+				background-color: var(--primary-hover);
+			}
+		}
+
+		input[type="radio"] {
+			display: none;
+
+			&:checked ~ label {
+				color: var(--text);
+				background-color: var(--primary);
+			}
+		}
+	}
+
+	#frm-confirmar-dado {
+		display: none;
+		transition: all .3s ease;
+		&.active {
+			display: block;
+		}
+	}
+}
+
+
+.c-input:has(.error i) .c-input__entry {
+	// background-color: #ff4a4a55;
+	border: 1px solid #af1717;
+	outline: 3px solid #ff676763;
+	position: relative;
+	margin: 0;
+	.error {
+		i {
+			color: #ff4a4a;
+		}
+	}
+	i:hover ~ .input-error {
+		display: block;
+		font-size: 13px;
+	}
+	.input-error {
+		position: absolute;
+		display: none;
+		top: -100%;
+		width: max-content;
+		background-color: #303030;
+		color: #fff;
+		padding: 5px 10px;
+		border-radius: 6px;
+		transform: translateX(-50%);
+	}
+}
