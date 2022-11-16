@@ -1,9 +1,28 @@
 @font-face {
-  font-family: Poppins;
-  src: url(../public/fonts/Poppins-Light.ttf);
+  font-family: "IBMPlexSans";
+  src: url("http://localhost/tcc/public/fonts/ibm/IBMPlexSans-Regular.ttf");
+}
+@font-face {
+  font-family: "Raleway";
+  src: url("http://localhost/tcc/public/fonts/raleway/Raleway-Regular.ttf");
+}
+@font-face {
+  font-family: "Jost";
+  src: url("http://localhost/tcc/public/fonts/jost/Jost-Regular.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("http://localhost/tcc/public/fonts/jost/Jost-Medium.ttf");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("http://localhost/tcc/public/fonts/jost/Jost-SemiBold.ttf");
+  font-weight: 700;
 }
 * {
-  font-family: Poppins;
+  font-family: "Jost";
 }
 
 :root {
@@ -15,10 +34,10 @@
   --text-dark: #2D2E30;
   --gray: #d8d7d7;
   --black: #333333;
-  --white: #fff;
   --background-page: #242424;
   --alternate-black: #141c2c;
-  --white-50: #f5f5f5;
+  --white: #fff;
+  --white-50: #f8f9fa;
   --primary-50: rgba(245, 10, 69, 0.1607843137);
   --secondary-50: rgba(0, 128, 255, 0.2666666667);
   --black-20: rgba(64, 64, 64, 0.4862745098);
@@ -29,7 +48,19 @@
 body {
   position: relative;
   font-family: Poppins;
-  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+          appearance: none;
+  background-color: var(--secondary-50);
+  border-radius: 8px;
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 8px;
 }
 
 a,
@@ -43,6 +74,18 @@ h6,
 span,
 label {
   color: var(--text-dark);
+}
+
+h1,
+h2 {
+  font-weight: 800;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
 }
 
 p,

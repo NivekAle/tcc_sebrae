@@ -152,4 +152,12 @@ class Database
 
 		return $this->Execute($query);
 	}
+
+	public function PegarUnicoProduto($id_produto)
+	{
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho
+		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id = $id_produto GROUP BY Imagens.id_produto;";
+
+		return $this->Execute($query);
+	}
 }

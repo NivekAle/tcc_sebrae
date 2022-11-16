@@ -44,4 +44,13 @@
 	.modal-footer {
 		gap: 10px;
 	}
+
+	#btn-fechar-comentario-modal {
+		cursor: pointer;
+		font-size: 18px;
+	}
+
+	.username {
+		text-transform: capitalize;
+	}
 }

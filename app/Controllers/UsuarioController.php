@@ -24,10 +24,10 @@ class UsuarioController
 			$telefone_existente = (new Database("Usuarios"))->select($condicao_telefone_iguais)->fetchObject(Usuario::class);
 
 			if ($email_existente) {
-				Base::Response("Atenção, o email já está registrado!", null,0);
+				Base::Response("Atenção, o email já está registrado!", null, 0);
 				exit;
 			} else if ($telefone_existente) {
-				Base::Response("Atenção, o telefone já está registrado!", null,0);
+				Base::Response("Atenção, o telefone já está registrado!", null, 0);
 				exit;
 			} else {
 
@@ -47,9 +47,9 @@ class UsuarioController
 
 				if ($usuario instanceof Usuario) {
 					// Session::CriarSessao($usuario);
-					Base::Response("Cadastro realizado com sucesso.!", null,1);
+					Base::Response("Cadastro realizado com sucesso.!", null, 1);
 				} else {
-					Base::Response("Atenção, Houve um erro ao fazer o cadastro, tente novamente mais tarde.", null,0);
+					Base::Response("Atenção, Houve um erro ao fazer o cadastro, tente novamente mais tarde.", null, 0);
 					new Exception("Houve um erro ao fazer o cadastro, tente novamente mais tarde.");
 				}
 			}

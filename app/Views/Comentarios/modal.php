@@ -5,10 +5,10 @@
 			<div class="modal-header">
 				<!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicione um Comentário</h1> -->
 				<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-				<p class="m-0">
+				<p class="m-0 username">
 					<strong><?php echo $_SESSION["sessao_usuario"]->nome_completo; ?></strong>
 				</p>
-				<i class="fas fa-window-close"></i>
+				<i class="fas fa-times" id="btn-fechar-comentario-modal"></i>
 			</div>
 			<div class="modal-body">
 				<form id="frm-novo-comentario">

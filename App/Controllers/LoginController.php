@@ -8,11 +8,6 @@ use App\Models\Usuario;
 use App\Models\Vendedor;
 use Exception;
 
-Session::BloquearLoginComSessao();
-
-global $teste;
-
-
 $ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
 
 require($ROOT_DIR);

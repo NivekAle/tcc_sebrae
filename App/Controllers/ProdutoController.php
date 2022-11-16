@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Database\Database;
+use App\DTO\ProdutosDTO;
 use App\Helpers\Upload;
 use App\Models\Imagem;
 use App\Models\Produto;
@@ -70,7 +71,14 @@ class ProdutoController
 	public static function JsonPegarProduto($id_produto)
 	{
 		$db_produto = Produto::PegarProduto($id_produto);
-		echo json_encode($db_produto, true);
+		$imagens = Imagem::PegarImagemProduto($id_produto);
+		// $db_produto = ProdutosDTO::PegarProduto($id_produto);
+		echo json_encode([
+			"Produto" => [
+				"informacoes" => $db_produto,
+				"imagens" => $imagens
+			]
+		], true);
 	}
 
 	public static function AdicionarImagemProduto($id_produto)
@@ -115,23 +123,37 @@ class ProdutoController
 	}
 }
 
-switch ($_POST) {
-	case isset($_POST["remover-produto"]):
-		ProdutoController::RemoverProduto($_POST["remover-produto"]);
-		break;
-	case isset($_POST["editar-produto"]):
-		ProdutoController::EditarProduto($_POST["editar-produto"]);
-		break;
-	case isset($_POST["novo-produto"]):
-		ProdutoController::AdicionarProduto($_POST["novo-produto"]);
-		break;
-	case isset($_GET["pegar-produto"]):
-		ProdutoController::JsonPegarProduto($_GET["id_produto"]);
-		break;
-	case isset($_FILES["produto-imagem"]):
-		ProdutoController::AdicionarImagemProduto($_POST["produto-id"]);
-		break;
-		// default:
-		// 	header("Location: http://localhost/tcc/");
-		// 	break;
+// echo '<pre>';
+// print_r($_POST);
+// echo '<pre>';
+// die();
+
+if (!empty($_POST)) {
+	switch ($_POST) {
+		case isset($_POST["remover-produto"]):
+			ProdutoController::RemoverProduto($_POST["remover-produto"]);
+			break;
+		case isset($_POST["editar-produto"]):
+			ProdutoController::EditarProduto($_POST["editar-produto"]);
+			break;
+		case isset($_POST["novo-produto"]):
+			ProdutoController::AdicionarProduto($_POST["novo-produto"]);
+			break;
+		case isset($_FILES["produto-imagem"]):
+			ProdutoController::AdicionarImagemProduto($_POST["produto-id"]);
+			break;
+			// default:
+			// 	header("Location: http://localhost/tcc/");
+			// 	break;
+	}
+} else {
+	switch ($_GET) {
+			// pegar unico produto e retorar json
+		case isset($_GET["key_produto"]):
+			ProdutoController::JsonPegarProduto($_GET["key_produto"]);
+			break;
+		default:
+			header("Location: http://localhost/tcc/");
+			break;
+	}
 }

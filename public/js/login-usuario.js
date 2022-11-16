@@ -1,10 +1,16 @@
 import { Toast } from "./Toast.js";
 
+$("#btn-toggle-password").on("click", function () {
+	$("#usuario-senha").attr("type", `${$("#usuario-senha").attr("type") == "password" ? "type" : "password"}`);
+	$("#btn-toggle-password").toggleClass("fas fa-eye-slash");
+});
+
 $("#frm-login-usuario").validate(
 	{
 		rules: {
 			"usuario-email": {
-				required: true
+				required: true,
+				email : true,
 			},
 			"usuario-senha": {
 				required: true
@@ -37,8 +43,8 @@ $("#frm-login-usuario").validate(
 					if (data.permissao) {
 						Toast("Redirecionando...");
 						setTimeout(() => {
-							// window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php"
-						}, 5200);
+							window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php"
+						}, 2000);
 					} else {
 						Toast(data.mensagem);
 						// ToastAlert(data.mensagem);

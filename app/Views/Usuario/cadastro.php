@@ -3,10 +3,13 @@
 namespace App;
 
 use App\Core\Base;
+use App\Helpers\Session;
 
 $ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
 
 require($ROOT_DIR);
+
+Session::BloquearLoginComSessao();
 
 ?>
 <!DOCTYPE html>
@@ -78,7 +81,7 @@ require($ROOT_DIR);
 										</span>
 									</div>
 									<div class="col-lg-6">
-										<label for="">Telefone</label>
+										<label for="usuario-telefone">Telefone</label>
 										<span class="c-input">
 											<div class="c-input__entry">
 												<input type="text" name="usuario-telefone" id="usuario-telefone">
@@ -101,19 +104,30 @@ require($ROOT_DIR);
 											</div>
 										</span>
 									</div>
-									<div class="col-lg-4">
+									<!-- <div class="col-lg-4">
 										<label for="">País</label>
 										<span class="c-input">
 											<div class="c-input__entry">
 												<input type="text" name="usuario-pais" id="usuario-pais">
 											</div>
 										</span>
+									</div> -->
+									<div class="col-lg-4">
+										<label for="">Pais</label>
+										<select name="usuario-pais" id="usuario-pais" class="c-input__entry">
+											<option selected="selected" value="">Selecionar o Pais</option>
+											<?php foreach (Base::$paises as $index => $pais) { ?>
+												<option value="<?= $pais; ?>">
+													<?= $pais; ?>
+												</option>
+											<?php } ?>
+										</select>
 									</div>
 									<div class="col-lg-6">
 										<label for="">Senha</label>
 										<span class="c-input">
 											<div class="c-input__entry">
-												<input type="text" name="usuario-senha" id="usuario-senha">
+												<input type="password" name="usuario-senha" id="usuario-senha">
 											</div>
 										</span>
 									</div>
@@ -121,17 +135,21 @@ require($ROOT_DIR);
 										<label for="">Confirmar Senha</label>
 										<span class="c-input">
 											<div class="c-input__entry">
-												<input type="text" id="usuario-confirmar-senha">
+												<input type="password" name="usuario-confirmar-senha" id="usuario-confirmar-senha">
 											</div>
 										</span>
 									</div>
 								</div>
+								<div class="my-1">
+									<input type="checkbox" id="toggle-password">
+									<label for="toggle-password">Mostrar Senha</label>
+								</div>
 								<div class="my-2 d-flex justify-content-between align-items-center">
-									<a href="<?php echo Base::$url_views . "Usuario/login.php" ?>">
+									<a href="<?php echo Base::$url_views . "Usuario/login.php" ?>" class="link">
 										<i class="fas fa-angle-left"></i>
 										Já tenho cadastro
 									</a>
-									<button class="c-btn c-btn__secondary" type="submit">Cadastrar-se</button>
+									<button class="c-btn c-btn__primary" type="submit">Cadastrar-se</button>
 								</div>
 							</form>
 						</div>
@@ -142,8 +160,11 @@ require($ROOT_DIR);
 
 	</main>
 
+	<?php require_once("../partials/toast.php"); ?>
+
 	<?php require_once("../partials/assets.php"); ?>
-	<script src="<?php echo Base::$url_scripts . "cadastro-usuario.js" ?>"></script>
+	<script type="module" src="<?php echo Base::$url_scripts . "cadastro-usuario.js" ?>"></script>
+	<script type="module" src="<?php echo Base::$url_scripts . "Toast.js" ?>"></script>
 
 </body>
 

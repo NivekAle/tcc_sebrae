@@ -1,3 +1,8 @@
+import { Toast } from './Toast.js'
+
+$("#usuario-cpf").mask("00000000000");
+$("#usuario-telefone").mask("00 000000000");
+
 $("#frm-cadastro-usuario").validate(
 	{
 		rules: {
@@ -6,12 +11,15 @@ $("#frm-cadastro-usuario").validate(
 			},
 			"usuario-cpf": {
 				required: true,
+				maxlength: 11,
+				minlength: 11,
 			},
 			"usuario-data_nascimento": {
 				required: true,
 			},
 			"usuario-email": {
 				required: true,
+				email: true,
 			},
 			"usuario-telefone": {
 				required: true,
@@ -19,7 +27,7 @@ $("#frm-cadastro-usuario").validate(
 			"usuario-cidade": {
 				required: true,
 			},
-			"usuario-Estado": {
+			"usuario-estado": {
 				required: true,
 			},
 			"usuario-pais": {
@@ -27,38 +35,58 @@ $("#frm-cadastro-usuario").validate(
 			},
 			"usuario-senha": {
 				required: true,
+				maxlength: 20,
+				minlength: 8
+			},
+			"usuario-confirmar-senha": {
+				required: true,
+				equalTo: "#usuario-senha",
+				maxlength: 20,
+				minlength: 8
 			},
 		},
 		messages: {
 			"usuario-nome": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`
 			},
 			"usuario-cpf": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`,
+				maxlength: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Digitos incorretos.</span>`,
+				minlength: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Digitos incorretos.</span>`,
 			},
 			"usuario-data_nascimento": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`
 			},
 			"usuario-email": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`,
+				email: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Email inválido.</span>`
 			},
 			"usuario-telefone": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`
 			},
 			"usuario-cidade": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`
 			},
-			"usuario-Estado": {
-				required: "Este campo é obrigatório."
+			"usuario-estado": {
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`
 			},
 			"usuario-pais": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`
 			},
 			"usuario-senha": {
-				required: "Este campo é obrigatório."
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`,
+				maxlength: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">A senha deve conter no máximo 20 caractéres.</span>`,
+				minlength: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">A senha deve conter no mínimo 8 caractéres.</span>`,
+			},
+			"usuario-confirmar-senha": {
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório.</span>`,
+				equalTo: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">As senhas não são iguais.</span>`,
+				maxlength: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Digitos incorretos.</span>`,
+				minlength: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Digitos incorretos.</span>`,
 			},
 		},
 		submitHandler: function (form) {
+			var data_formatada = new Date($("#usuario-data_nascimento").val()).toISOString().slice(0, 19).replace('T', ' ');
 			$.ajax({
 				type: "POST",
 				url: "http://localhost/tcc/app/Controllers/UsuarioController.php",
@@ -68,7 +96,7 @@ $("#frm-cadastro-usuario").validate(
 						"cpf": $("#usuario-cpf").val(),
 						"data_nascimento": $("#usuario-data_nascimento").val(),
 						"email": $("#usuario-email").val(),
-						"telefone": $("#usuario-telefone").val(),
+						"telefone": $("#usuario-telefone").val().trim(),
 						"cidade": $("#usuario-cidade").val(),
 						"estado": $("#usuario-estado").val(),
 						"pais": $("#usuario-pais").val(),
@@ -78,12 +106,12 @@ $("#frm-cadastro-usuario").validate(
 				dataType: "JSON",
 				success: function (response) {
 					if (response.status == 0) {
-						ToastAlert(response.data.mensagem);
+						Toast(response.data.mensagem);
 					} else {
-						ToastAlert(response.data.mensagem);
+						Toast(response.data.mensagem);
 						setTimeout(() => {
-							window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php";
-						}, 1000);
+							window.location.href = "http://localhost/tcc/app/Views/Usuario/login.php";
+						}, 2000);
 					}
 				}
 			});
@@ -91,40 +119,9 @@ $("#frm-cadastro-usuario").validate(
 	}
 );
 
-function ToastAlert($mensagem) {
-	const div = document.createElement("div");
-	const icon = document.createElement("i");
-	const mensagem = document.createElement("p");
-	div.classList.add("alert", `${$mensagem == 0 ? "alert-danger" : "alert-success"}`, "d-flex", "flex-column", "justify-content-center", "gap-2");
-	div.setAttribute("id", `${$mensagem == 0 ? "login-user-error-alert" : "login-user-success-alert"}`);
-	icon.classList.add("fas", "fa-info-circle");
-	mensagem.classList.add("m-0");
-	const content = document.createElement("div");
-	content.classList.add("d-flex", "flex-row", "align-items-center", "justify-content-center", "gap-2");
-	content.append(icon);
-	content.append(mensagem);
-	div.append(content);
-	mensagem.innerText = $mensagem;
-	div.animate(
-		[
-			{
-				transform: "translateZ(-1400px)",
-				opacity: "0"
-			},
-			{
-				transform: "translateZ(0)",
-				opacity: "1"
-			}
-		], {
-		duration: 200
-	});
-	document.body.appendChild(div);
-	// if (document.body.querySelector("#login-user-error-alert") == null) {
-
-	// }
-	// else {
-	// 	const exist_element = document.getElementById("login-user-error-alert");
-	// 	document.getElementById("body").removeChild(exist_element);
-	// 	document.body.appendChild(div);
-	// }
-}
+// Toggle Password
+$("#toggle-password").on("change",function () {
+	var state   = ($(this).is(':checked') ? 'text' : 'password');
+	$("#usuario-senha").prop("type",state);
+	$("#usuario-confirmar-senha").prop("type",state);
+});

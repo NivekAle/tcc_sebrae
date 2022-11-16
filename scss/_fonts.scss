@@ -1,8 +1,29 @@
 @font-face {
-	font-family: Poppins;
-	src: url(../public/fonts/Poppins-Light.ttf);
+	font-family: "IBMPlexSans";
+	src: url("http://localhost/tcc/public/fonts/ibm/IBMPlexSans-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Raleway";
+	src: url("http://localhost/tcc/public/fonts/raleway/Raleway-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Jost";
+	src: url("http://localhost/tcc/public/fonts/jost/Jost-Regular.ttf");
+	font-weight: 600;
+}
+@font-face {
+	font-family: "Jost";
+	src: url("http://localhost/tcc/public/fonts/jost/Jost-Medium.ttf");
+	font-weight: 800;
+}
+@font-face {
+	font-family: "Jost";
+	src: url("http://localhost/tcc/public/fonts/jost/Jost-SemiBold.ttf");
+	font-weight: 700;
 }
 
 * {
-	font-family: Poppins;
+	font-family: "Jost";
 }

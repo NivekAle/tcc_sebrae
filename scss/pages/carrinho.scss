@@ -1,0 +1,45 @@
+@import "../variables";
+@import "../components/toastAlert";
+@import "../components/button";
+@import "../components/input";
+@import "../components/breadcrumb";
+@import "../components/navbar";
+@import "../components/loading";
+@import "../components/produto-card";
+@import "../components/categorias";
+@import "../components/carrinho-card";
+
+.carrinho {
+	&__header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 20px;
+	}
+
+	&__lista {
+		border: 1px solid #ddd;
+		height: 400px;
+		overflow: auto;
+		border-radius: 8px;
+		padding: 20px;
+	}
+
+	&__calculos {
+		background-color: var(--white-50);
+		border: 1px solid #ddd;
+		padding: 20px;
+		border-radius: 8px;
+	}
+	p {
+		font-size: 25px;
+		margin: 0;
+		text-align: center;
+	}
+	&__total {
+		display: block;
+		font-size: 30px;
+		text-align: center;
+	}
+}

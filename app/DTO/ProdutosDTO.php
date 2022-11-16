@@ -29,4 +29,8 @@ class ProdutosDTO
 	{
 		return (new Database("produtos"))->produtosVendedor($id_vendedor)->fetchAll(PDO::FETCH_CLASS, self::class);
 	}
+
+	public static function PegarProduto($id_produto) {
+		return (new Database("produtos"))->PegarUnicoProduto($id_produto)->fetchObject(self::class);
+	}
 }

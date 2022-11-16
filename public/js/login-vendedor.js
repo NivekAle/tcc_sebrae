@@ -16,8 +16,8 @@ $("#frm-login-vendedor").validate(
 			},
 			"vendedor-senha": {
 				required: true,
-				maxlength : 20,
-				minlength : 8
+				// maxlength : 20,
+				// minlength : 8
 			}
 		},
 		messages: {
@@ -27,8 +27,8 @@ $("#frm-login-vendedor").validate(
 			},
 			"vendedor-senha": {
 				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório.</span>`,
-				maxlength : `<i class="fas fa-exclamation-triangle"></i><span class="login-error">A senha deve conter no máximo 20 caractéres.</span>`,
-				minlength : `<i class="fas fa-exclamation-triangle"></i><span class="login-error">A senha deve conter no mínimo 8 caractéres.</span>`,
+				// maxlength : `<i class="fas fa-exclamation-triangle"></i><span class="login-error">A senha deve conter no máximo 20 caractéres.</span>`,
+				// minlength : `<i class="fas fa-exclamation-triangle"></i><span class="login-error">A senha deve conter no mínimo 8 caractéres.</span>`,
 			}
 		},
 		submitHandler: function (form) {

@@ -28,10 +28,10 @@ class Imagem
 		return $this;
 	}
 
-	public static function PegarTodasImagens()
-	{
-		return (new Database('imagens'))->select(null, null, null)->fetchAll(PDO::FETCH_CLASS, self::class);
-	}
+	// public static function PegarTodasImagens()
+	// {
+	// 	return (new Database('imagens'))->select(null, null, null)->fetchAll(PDO::FETCH_CLASS, self::class);
+	// }
 
 	public static function PegarImagemProduto($id_produto)
 	{

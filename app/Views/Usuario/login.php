@@ -43,15 +43,15 @@ require($ROOT_DIR);
 						<span class="c-input">
 							<label class="c-input__label" for="usuario-email">Senha</label>
 							<div class="c-input__entry">
-								<!-- <i class="fas fa-key c-input__icon"></i> -->
 								<input type="password" name="usuario-senha" id="usuario-senha" placeholder="*****">
+								<i class="far fa-eye" id="btn-toggle-password"></i>
 							</div>
 						</span>
 						<p>
 							<a href="http://localhost/tcc/app/Views/Usuario/recuperar-senha.php">Esqueceu a senha?</a>
 						</p>
 						<div class="my-3">
-							<button class="c-btn c-btn__primary">Entrar</button>
+							<button class="w-100 c-btn c-btn__primary">Entrar</button>
 						</div>
 					</form>
 					<div class="text-center">
