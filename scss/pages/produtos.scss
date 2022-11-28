@@ -4,6 +4,8 @@
 @import "../components/categorias";
 @import "../components/hero";
 @import "../components/breadcrumb";
+@import "../components/button";
+@import "../components/toastAlert";
 
 // .cta-float {
 // 	position: absolute;
@@ -16,3 +18,10 @@
 // 	border-radius: 50%;
 // 	padding: 7px 10px;
 // }
+.produto {
+	&-image {
+		height: 350px;
+	}
+
+}
+

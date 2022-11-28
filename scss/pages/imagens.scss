@@ -3,3 +3,37 @@
 @import "../components/button";
 @import "../components/input";
 @import "../components/navbar";
+@import "../components/hero";
+
+
+.adicionar-imagem {
+	h2 {
+
+	}
+}
+
+.vendedor-actions {
+	background-color: #f9f9f9;
+	padding: 10px;
+	&__list {
+		padding: 0;
+		list-style: none;
+		margin: 0;
+	}
+	.cta-vendedor {
+		text-decoration: none;
+		color: var(--secondary);
+		font-size: 14px;
+		font-weight: 600;
+		display: block;
+		padding: 7px 5px;
+		&:hover {
+			background-color: var(--secondary);
+			color: var(--text);
+		}
+	}
+}
+
+.adicionar-produto {
+	padding: 30px 0px;
+}

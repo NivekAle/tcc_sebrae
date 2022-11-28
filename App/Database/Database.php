@@ -125,7 +125,7 @@ class Database
 
 	public function pegarComentarios($id_produto)
 	{
-		$query = "SELECT `Comentarios`.`criado_em`, `Comentarios`.`conteudo`, `Usuarios`.`nome_completo` ";
+		$query = "SELECT `Comentarios`.`id_produto`, `Comentarios`.`criado_em`, `Comentarios`.`conteudo`, `Usuarios`.`nome_completo` ";
 		$query .= " FROM " .  $this->table . " JOIN Produtos ON Produtos.id = Comentarios.id_produto JOIN Usuarios ON Usuarios.id = Comentarios.id_usuario WHERE Produtos.id = $id_produto";
 		// echo $query;
 		// die();
@@ -148,7 +148,7 @@ class Database
 
 	public function pegarProdutos()
 	{
-		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id GROUP BY Imagens.id_produto;";
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.status = 1  GROUP BY Imagens.id_produto;";
 
 		return $this->Execute($query);
 	}
@@ -159,5 +159,26 @@ class Database
 		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id = $id_produto GROUP BY Imagens.id_produto;";
 
 		return $this->Execute($query);
+	}
+
+	public function QueryBusca($text)
+	{
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho";
+		$query .= " FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.nome LIKE '%$text%' AND status = 1 GROUP BY Imagens.id_produto";
+		return $this->Execute($query);
+	}
+
+	public function Filtragem($filtros)
+	{
+		$filter = array_values($filtros);
+		
+		echo '<pre>';
+		print_r($filter);
+		echo '<pre>';
+		die();
+
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho
+		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.status = 1 GROUP BY Imagens.id_produto
+		";
 	}
 }

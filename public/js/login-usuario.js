@@ -10,7 +10,7 @@ $("#frm-login-usuario").validate(
 		rules: {
 			"usuario-email": {
 				required: true,
-				email : true,
+				email: true,
 			},
 			"usuario-senha": {
 				required: true
@@ -37,7 +37,8 @@ $("#frm-login-usuario").validate(
 				},
 				dataType: "json",
 				beforeSend: function () {
-					$(".c-btn c-btn__primary").data("disable", "true");
+					$("#btn-login").prop("disabled", "true")
+					$("#btn-login").html("Entrando");
 				},
 				success: function ({ usuario, data }) {
 					if (data.permissao) {

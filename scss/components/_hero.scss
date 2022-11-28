@@ -1,4 +1,8 @@
 .hero {
+	margin-top: 15px;
+	// background-color: var(--primary);
+	padding: 10px 0px;
+
 	&-content {
 		h1 {
 			font-weight: 800;
@@ -6,6 +10,23 @@
 		p {
 			font-weight: 600;
 			font-size: 15px;
+		}
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+
+			li[data-bread="active"] {
+				// font-weight: 700;
+				color: var(--secondary) !important;
+			}
+			li {
+				color: var(--gray-50);
+				// }
+			}
 		}
 	}
 }

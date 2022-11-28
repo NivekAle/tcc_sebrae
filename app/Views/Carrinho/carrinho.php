@@ -61,16 +61,7 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-6 text-end">
-							<form id="frm-pesquisa">
-								<span>
-									<input type="text" placeholder="categoria, nome de produto">
-									<button>
-										<i class="fas fa-search"></i>
-									</button>
-								</span>
-							</form>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -108,7 +99,7 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 								<strong class="carrinho__total"></strong>
 								<hr>
 								<button class="w-100 c-btn c-btn__primary">
-									Prosseguir
+									Próximo
 								</button>
 								<!--<hr>
 							<h4>Resumo do Pedido</h4>

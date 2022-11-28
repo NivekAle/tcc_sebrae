@@ -160,3 +160,8 @@ $(document).ready(function () {
 });
 
 // mostrar senha
+$("#toggle-password").on("change", function () {
+	var state = ($(this).is(':checked') ? 'text' : 'password');
+	$("#vendedor-senha").prop("type", state);
+	$("#vendedor-senha_confirma").prop("type", state);
+});

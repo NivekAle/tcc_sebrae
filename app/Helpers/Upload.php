@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
-require("d:/projects/php/tcc/vendor/autoload.php");
+$ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
+
+require($ROOT_DIR);
 
 class Upload
 {
@@ -40,11 +42,12 @@ class Upload
 		}
 	}
 
-	public function uploadImage($dir) {
+	public function uploadImage($dir)
+	{
 		// verificar erro
 		if ($this->error != 0) return false;
 
-		$path = $dir."/".$this->getBaseName();
+		$path = $dir . "/" . $this->getBaseName();
 		echo 'camiho completro<pre>';
 		print_r($path);
 		echo '<pre>';
@@ -53,8 +56,9 @@ class Upload
 		return true;
 	}
 
-	public function getBaseName() {
+	public function getBaseName()
+	{
 		$extension = strlen($this->extensao) ? '.' . $this->extensao : "";
-		return $this->nome.$extension;
+		return $this->nome . $extension;
 	}
 }

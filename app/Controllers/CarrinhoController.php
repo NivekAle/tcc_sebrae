@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Base;
+use App\Models\Imagem;
 use App\Models\Produto;
 
 $ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
@@ -20,8 +21,8 @@ class CarrinhoController
 		session_start();
 		// * pegar as props do produto
 		$produto_selecionado = Produto::PegarProduto($id_produto);
+		$imagens = Imagem::PegarImagemProduto($id_produto);
 
-		// * salvalos em um COOKIE temporariamente, incremento de varios produtos = Array
 		//* verificando se o produto existe
 		if (!empty($produto_selecionado)) {
 			//* vericando se o produto ja existe no carinho
@@ -33,9 +34,10 @@ class CarrinhoController
 					"id_produto" => $produto_selecionado->id,
 					"nome_produto" => $produto_selecionado->nome,
 					"preco_produto" => $produto_selecionado->preco,
+					"imagens" => $imagens
 					// "quantidade" => 1,
 				);
-				Base::Response("O Produto {$produto_selecionado->nome} foi adicionado com sucesso!", null, 0);
+				Base::Response("Produto foi adicionado no seu carrinho!", null, 0);
 			}
 		} else {
 			Base::Response("Não foi possível adicionar o produto ao carrinho, tente novamente mais tarde.", null, 0);
@@ -69,7 +71,8 @@ class CarrinhoController
 		exit;
 	}
 
-	public static function RemoverProduto($id_produto) {
+	public static function RemoverProduto($id_produto)
+	{
 		session_start();
 		try {
 			unset($_SESSION["carrinho"][$id_produto]);

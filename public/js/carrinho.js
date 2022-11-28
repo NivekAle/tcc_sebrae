@@ -1,7 +1,7 @@
 import { Toast } from './Toast.js';
 
 // formtar preco
-const formatarPreco = (preco) => (new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco));
+export const formatarPreco = (preco) => (new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco));
 
 // adicionando ao carrinho
 $("#btn-adicionar-carrinho").click(function (e) {
@@ -11,11 +11,11 @@ $("#btn-adicionar-carrinho").click(function (e) {
 		url: `http://localhost/tcc/app/Controllers/CarrinhoController.php?add_carrinho=${$id_produto}`,
 		dataType: "JSON",
 		success: function (response) {
-			console.log(response);
+			// console.log(response);
 			if (response.status == 0) {
 				Toast(response.data.mensagem);
 			} else {
-				Toast("Produto adicionado no carrinho");
+				Toast("O Produto foi adicionado no carrinho");
 			}
 		}
 	});
@@ -37,6 +37,7 @@ function PegarCarrinho() {
 			const { data: { body }, status } = response;
 			if (response.data.hasOwnProperty("body")) {
 				InserirProdutos(body);
+
 			} else {
 				$("#renderizar-produtos").css("height", "100%");
 				$("#renderizar-produtos").html(`<div class="w-100 h-100 d-flex flex-column align-items-center justify-content-center"><p class="text-muted">Carrinho vazio.</p>.</div>`);
@@ -50,20 +51,21 @@ PegarCarrinho();
 
 function InserirProdutos(body) {
 	// console.log(body);
+	$("#renderizar-produtos").empty();
 	var array_produtos = [];
+	var imagens = [];
 	var preco_total = [];
 	array_produtos = Object.entries(body).map((valor, i) => valor.slice(1)[0]);
-	// console.log(array_produtos);
-	// console.log(preco_total);
 	if (array_produtos == [] || array_produtos.length >= 0) {
+		// $(selector).attr(attributeName, value);
 		array_produtos.forEach(item => {
-			// <p>total : ${item?.quantidade * item.preco_produto}</p>
-			// <p>${item?.quantidade || ""}</p>
 			var tag_card = `
 			<div class="carrinho-card">
 				<div class="carrinho-card__main">
 					<div class="carrinho-card__header">
-						<div class="carrinho-card__image"></div>
+						<div class="carrinho-card__image">
+						<img src="http://localhost/tcc/public/uploads/${item.imagens[0].caminho}" >
+						</div>
 					</div>
 					<div class="carrinho-card__body">
 						<h6 class="carrinho-card__title">
@@ -80,7 +82,6 @@ function InserirProdutos(body) {
 			</div>
 			`;
 			$("#renderizar-produtos").append(tag_card);
-
 			// total do produto
 			preco_total.push(item.preco_produto)
 			CarrinhoTotal(preco_total);
@@ -102,18 +103,22 @@ $("#btn-limpar-carrinho").click(function () {
 		dataType: "JSON",
 		success: function (response) {
 			$("#renderizar-produtos").empty();
+			$(".carrinho__total").html("");
+			$("i[data-count-cart]").attr("data-count-cart", "0");
 			PegarCarrinho();
 		}
 	});
 });
+
 
 // remover um produto
 $(document).on("click", "#btn-remover-produto", function () {
 	$.ajax({
 		type: "GET",
 		url: `http://localhost/tcc/app/Controllers/CarrinhoController.php?remover_produto=${$(this).attr("data-produto")}`,
-		dataType: "JSON",
+		dataType: "json",
 		success: function (response) {
+			// console.log(response);
 			if (response.status) {
 				PegarCarrinho();
 			} else {

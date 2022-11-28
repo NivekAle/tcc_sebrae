@@ -8,6 +8,7 @@ create table Usuarios(
     email VARCHAR(255) NOT NULL UNIQUE,
     senha VARCHAR(20) NOT NULL,
     cpf VARCHAR(11) NOT NULL,
+    
     data_nascimento DATE NOT NULL,
 	-- endereco VARCHAR(255) NOT NULL,
     cidade VARCHAR(255) NOT NULL,
@@ -40,8 +41,8 @@ create table Produtos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     descricao TEXT,
-    preco DECIMAL,
-    likes INT DEFAULT(0),
+    preco DECIMAL(10,2),
+    likes INT DEFAULT 0 ,
     criado_em timestamp,
     
     -- FK
@@ -106,6 +107,17 @@ create table Comentarios (
     CONSTRAINT FK_Comentario_Produto FOREIGN KEY (id_produto) REFERENCES Produtos(id),
     id_usuario INT,
     CONSTRAINT FK_Comentario_Usuario FOREIGN KEY (id_usuario) REFERENCES Usuarios(id)
+);
+
+-- 24/11 [21:42]
+CREATE TABLE Atributos_Produtos (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NULL UNIQUE,
+    valor VARCHAR(255) NULL,
+    criado_em timestamp,
+    -- FK
+    id_produto INT,
+    CONSTRAINT FK_Produto_Atributo FOREIGN KEY (id_produto) REFERENCES Produtos(id)
 );
 
 -- updates 

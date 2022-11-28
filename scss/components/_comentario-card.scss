@@ -15,4 +15,14 @@
 	&__created {
 		color: var(--gray-50);
 	}
+	&__user {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 10px;
+		h6 {
+			margin: 0px;
+			text-transform: capitalize;
+		}
+	}
 }

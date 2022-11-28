@@ -29,7 +29,6 @@
   -webkit-box-shadow: 0px 3px 5px 3px #f7f7f7;
           box-shadow: 0px 3px 5px 3px #f7f7f7;
   margin: 10px 0px;
-  max-width: 261px;
 }
 .produto-card:hover {
   -webkit-transition: all 0.2s ease-in-out;
@@ -253,7 +252,6 @@
   width: 20%;
 }
 .navbar__content {
-  width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -313,6 +311,18 @@
           justify-content: center;
   gap: 15px;
 }
+.navbar__controller i.fas.fa-shopping-cart::after {
+  position: relative;
+  content: attr(data-count-cart);
+  color: var(--text-black);
+  padding: 2px 8px;
+  top: -10px;
+  border-radius: 50px;
+  line-height: 0px;
+  left: -5px;
+  font-family: "Jost";
+  font-size: 10px;
+}
 .navbar__cart {
   text-decoration: none;
   color: var(--primary);
@@ -340,16 +350,17 @@
 }
 .navbar :has(.navbar__dropdown.active) .navbar__dropdown-button {
   color: var(--text);
-  background-color: var(--secondary);
+  background-color: rgba(138, 137, 137, 0.168627451);
+  border-radius: 50%;
 }
 .navbar__dropdown {
   display: none;
   position: absolute;
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0px;
   list-style-type: none;
-  top: 60px;
+  top: 57px;
   right: 0;
   width: 250px;
   overflow: hidden;
@@ -372,6 +383,22 @@
   background-color: var(--secondary);
   color: var(--text);
 }
+.navbar__dropdown a i {
+  padding: 0px 10px 0px 0px;
+}
+.navbar__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 40px;
+}
 
 .categorias-row {
   display: -webkit-box;
@@ -387,6 +414,8 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 5px 0px;
 }
 .categorias-row a {
@@ -400,12 +429,35 @@
   color: var(--text);
 }
 
+.hero {
+  margin-top: 15px;
+  padding: 10px 0px;
+}
 .hero-content h1 {
   font-weight: 800;
 }
 .hero-content p {
   font-weight: 600;
   font-size: 15px;
+}
+.hero-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+}
+.hero-content ul li[data-bread=active] {
+  color: var(--secondary) !important;
+}
+.hero-content ul li {
+  color: var(--gray-50);
 }
 
 .breadcrumb {
@@ -432,4 +484,168 @@
 .breadcrumb .breadcrumb__item--current {
   font-weight: 700;
   color: var(--secondary);
+}
+
+.c-btn {
+  border: none;
+  background-color: unset;
+}
+
+.c-btn__primary {
+  background-color: var(--primary);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 5px 15px;
+  border-radius: 6px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  color: var(--text);
+  font-size: 14px;
+}
+.c-btn__primary:hover {
+  background-color: var(--primary-hover);
+}
+.c-btn__primary.c-btn__primary--outline {
+  background-color: unset;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 5px 15px;
+}
+.c-btn__primary.c-btn__primary--outline:hover {
+  background-color: var(--primary);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.c-btn__secondary {
+  background-color: var(--secondary);
+  color: var(--text);
+  font-size: 14px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 5px 15px;
+  border-radius: 6px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+.c-btn__secondary:hover {
+  outline: 3px solid var(--secondary-50);
+}
+.c-btn__secondary.c-btn__secondary--outline {
+  background-color: unset;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  padding: 5px 15px;
+  text-align: center;
+}
+.c-btn__secondary.c-btn__secondary--outline:hover {
+  background-color: var(--secondary);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.c-btn__neutral {
+  background-color: var(--black);
+  color: var(--text);
+  font-size: 14px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px 20px;
+  border-radius: 6px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.c-btn__neutral:hover {
+  outline: 3px solid var(--black-20);
+}
+
+.Toast {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  border-radius: 6px;
+  padding: 20px 30px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid var(--secondary);
+  overflow: hidden;
+  -webkit-transform: translateX(calc(100% + 30px));
+          transform: translateX(calc(100% + 30px));
+  -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.Toast.active {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+.Toast-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.Toast-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 20px;
+}
+.Toast p {
+  margin: 0px;
+}
+.Toast #btn-close-toast {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.Toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #fff;
+}
+.Toast-progress::before {
+  display: none;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--secondary);
+}
+.Toast .Toast-progress.active::before {
+  -webkit-animation: progress 2s linear forwards;
+          animation: progress 2s linear forwards;
+}
+
+@-webkit-keyframes progress {
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes progress {
+  100% {
+    right: 100%;
+  }
+}
+.produto-image {
+  height: 350px;
 }

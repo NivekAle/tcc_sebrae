@@ -42,14 +42,14 @@ require($ROOT_DIR);
 							<label class="c-input__label" for="vendedor-email">Senha</label>
 							<div class="c-input__entry">
 								<input type="password" name="vendedor-senha" id="vendedor-senha" placeholder="*****">
-								<i class="far fa-eye" id="btn-toggle-password"></i>
+							<i class="far fa-eye" id="btn-toggle-password"></i>
 							</div>
 						</span>
 						<p>
 							<a href="http://localhost/tcc/app/Views/Vendedor/recuperar-senha.php">Esqueceu a senha?</a>
 						</p>
 						<div class="my-3">
-							<button class="w-100 c-btn c-btn__primary">Entrar</button>
+							<button class="w-100 c-btn c-btn__primary" id="btn-login">Entrar</button>
 						</div>
 					</form>
 					<div class="text-center">

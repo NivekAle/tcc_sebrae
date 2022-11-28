@@ -2,11 +2,13 @@
 
 namespace App\Controllers;
 
+use App\Core\Base;
 use App\Database\Database;
 use App\DTO\ProdutosDTO;
 use App\Helpers\Upload;
 use App\Models\Imagem;
 use App\Models\Produto;
+use App\Models\AtributosProdutos;
 use Exception;
 
 $ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
@@ -42,43 +44,83 @@ class ProdutoController
 
 	public static function AdicionarProduto($novo_produto)
 	{
-		$produto = new Produto();
-		$produto->nome = $novo_produto["nome"];
-		$produto->descricao = $novo_produto["descricao"];
-		$produto->preco = $novo_produto["preco"];
-		$produto->id_categoria = $novo_produto["categoria"];
-		$produto->id_vendedor = $novo_produto["vendedor"];
+		try {
+			$atributos_parser = json_decode($novo_produto["atributos"], true);
+			if (empty($atributos_parser)) {
+				Base::Response("É necessário pelo menos 1 atributo.", null, 0);
+				return;
+			}
+			$atributos = array_chunk(json_decode($novo_produto["atributos"]), 2);
+			// TODO : adicionar dados ao bd, são 2 arrays Array 👇
+			// Array(	[0] => Array ([0] => nome 1 ,[1] => valor 1))
 
-		$produto->Cadastrar();
+			$produto = new Produto();
+			$produto->nome = $novo_produto["nome"];
+			$produto->descricao = $novo_produto["descricao"];
+			$produto->preco = $novo_produto["preco"];
+			$produto->id_categoria = $novo_produto["categoria"];
+			$produto->id_vendedor = $novo_produto["vendedor"];
 
-		$imagens_produto = Imagem::PegarImagemProduto($produto->id);
+			$produto->Cadastrar();
 
-		if (empty($imagens_produto)) {
-			self::RemoverProduto($produto->id);
-		}
+			for ($i = 0; $i < count($atributos); $i++) {
+				$atributo_db = new AtributosProdutos();
+				$attr_duplicado = (new AtributosProdutos())->VerificarDuplicidade($atributos[$i][0]);
+				if ($attr_duplicado) {
+					throw new Exception('Os nomes dos atributos não podem ser iguais.');
+				} else {
+					$atributo_db->nome = $atributos[$i][0];
+					$atributo_db->valor = $atributos[$i][1];
+					$atributo_db->id_produto = $produto->id;
+					$atributo_db->Cadastrar();
+				}
+			}
+			
+			$imagens_produto = Imagem::PegarImagemProduto($produto->id);
 
-		echo json_encode(
-			[
-				"data" => [
-					"produto" => [
-						"id" => $produto->id
+			if (empty($imagens_produto)) {
+				self::RemoverProduto($produto->id);
+			}
+
+			echo json_encode(
+				[
+					"data" => [
+						"produto" => [
+							"id" => $produto->id
+						]
 					]
 				]
-			]
-		);
+			);
+		} catch (Exception $error) {
+			Base::Response($error->getMessage(), null, 0);
+		}
 	}
 
-	public static function JsonPegarProduto($id_produto)
+	public static function PegarProduto($id_produto)
 	{
 		$db_produto = Produto::PegarProduto($id_produto);
 		$imagens = Imagem::PegarImagemProduto($id_produto);
-		// $db_produto = ProdutosDTO::PegarProduto($id_produto);
-		echo json_encode([
-			"Produto" => [
+		if (!empty($db_produto)) {
+			Base::Response("", ["Produto" => [
 				"informacoes" => $db_produto,
 				"imagens" => $imagens
-			]
-		], true);
+			]], 1);
+		} else {
+			Base::Response("Houve um erro ao carregar o produto, tente novamente mais tarde", null, 0);
+		}
+	}
+
+	public static function JsonTodosProduto($param)
+	{
+		// $db_produto = Produto::PegarProduto($id_produto);
+		// $imagens = Imagem::PegarImagemProduto($id_produto);
+		if ($param) {
+			$list_produtos = ProdutosDTO::PegarTodosProdutos();
+			Base::Response("Carregando Imagens", $list_produtos, 1);
+			return;
+		} else {
+			Base::Response("Houve um erro ao carregar os produtos, tente novamente mais tarde", null, 0);
+		}
 	}
 
 	public static function AdicionarImagemProduto($id_produto)
@@ -149,8 +191,11 @@ if (!empty($_POST)) {
 } else {
 	switch ($_GET) {
 			// pegar unico produto e retorar json
-		case isset($_GET["key_produto"]):
-			ProdutoController::JsonPegarProduto($_GET["key_produto"]);
+		case isset($_GET["list"]):
+			ProdutoController::JsonTodosProduto($_GET["list"]);
+			break;
+		case isset($_GET["id"]):
+			ProdutoController::PegarProduto($_GET["id"]);
 			break;
 		default:
 			header("Location: http://localhost/tcc/");

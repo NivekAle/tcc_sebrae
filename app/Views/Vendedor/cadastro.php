@@ -89,7 +89,7 @@ require($ROOT_DIR);
 										<label for="" id="vendedor-identificador">CPF</label>
 										<span class="c-input">
 											<div class="c-input__entry">
-												<input type="text" name="vendedor-cpf" id="" data-js="render-option" >
+												<input type="text" name="vendedor-cpf" id="" data-js="render-option">
 											</div>
 										</span>
 									</div>
@@ -129,7 +129,7 @@ require($ROOT_DIR);
 										<label for="">Senha</label>
 										<span class="c-input">
 											<div class="c-input__entry">
-												<input type="text" name="vendedor-senha" id="vendedor-senha">
+												<input type="password" name="vendedor-senha" id="vendedor-senha">
 											</div>
 										</span>
 									</div>
@@ -137,10 +137,14 @@ require($ROOT_DIR);
 										<label for="">Confirmar Senha</label>
 										<span class="c-input">
 											<div class="c-input__entry">
-												<input type="text" name="vendedor-senha_confirma" id="vendedor-senha_confirma">
+												<input type="password" name="vendedor-senha_confirma" id="vendedor-senha_confirma">
 											</div>
 										</span>
 									</div>
+								</div>
+								<div class="my-1">
+									<input type="checkbox" id="toggle-password">
+									<label for="toggle-password">Mostrar Senha</label>
 								</div>
 								<div class="my-2 d-flex justify-content-between align-items-center">
 									<a href="<?php echo Base::$url_views . "Vendedor/login.php" ?>">

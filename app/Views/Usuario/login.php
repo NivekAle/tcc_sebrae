@@ -51,7 +51,7 @@ require($ROOT_DIR);
 							<a href="http://localhost/tcc/app/Views/Usuario/recuperar-senha.php">Esqueceu a senha?</a>
 						</p>
 						<div class="my-3">
-							<button class="w-100 c-btn c-btn__primary">Entrar</button>
+							<button class="w-100 c-btn c-btn__primary" id="btn-login">Entrar</button>
 						</div>
 					</form>
 					<div class="text-center">

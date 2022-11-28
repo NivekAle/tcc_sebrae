@@ -12,7 +12,7 @@ $("#frm-login-vendedor").validate(
 		rules: {
 			"vendedor-email": {
 				required: true,
-				email : true
+				email: true
 			},
 			"vendedor-senha": {
 				required: true,
@@ -42,9 +42,16 @@ $("#frm-login-vendedor").validate(
 					}
 				},
 				dataType: "json",
+				beforeSend: function () {
+					$("#btn-login").prop("disabled", "true")
+					$("#btn-login").html("Entrando");
+				},
 				success: function (response) {
 					if (response.data.permissao) {
-						window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php";
+						Toast("Redirecionando...");
+						setTimeout(() => {
+							window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php";
+						}, 2000);
 					}
 					else if (response.status == 0) {
 						Toast(response.data.mensagem);

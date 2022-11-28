@@ -12,8 +12,8 @@
 			</div>
 			<div class="modal-body">
 				<form id="frm-novo-comentario">
-					<input type="text" name="comentario-id_produto" id="comentario-id_produto" value="<?php echo $_GET["id"] ?>" readonly>
-					<input type="text" name="comentario-id_usuario" id="comentario-id_usuario" value="<?php echo $_SESSION["sessao_usuario"]->id; ?>" readonly>
+					<input type="hidden" name="comentario-id_produto" id="comentario-id_produto" value="<?php echo $_GET["id"] ?>" readonly>
+					<input type="hidden" name="comentario-id_usuario" id="comentario-id_usuario" value="<?php echo $_SESSION["sessao_usuario"]->id; ?>" readonly>
 					<span class="c-input">
 						<!-- <p class="" for="produto-preco">Descrição</p> -->
 						<div class="w-100">

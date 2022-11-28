@@ -266,7 +266,7 @@ class Base
 	public static function IsSeller()
 	{
 		if (!property_exists($_SESSION["sessao_usuario"], "cnpj")) {
-			header("Location: http://localhost/tcc/app/Views/Produto/index.php");
+			header("Location: http://localhost/tcc/app/Views/Produtos/index.php");
 			exit;
 		}
 	}
