@@ -33,6 +33,7 @@
           transform: translateX(calc(100% + 30px));
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 99999;
 }
 .Toast.active {
   -webkit-transform: translateX(0%);
@@ -169,7 +170,7 @@
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  padding: 10px 20px;
+  padding: 5px 15px;
   border-radius: 6px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -227,36 +228,8 @@
   font-size: 15px;
 }
 
-textarea {
-  margin: 10px 0px;
-  padding: 5px 15px;
-  border: 1px solid var(--text-dark);
-  border-radius: 6px;
-  display: block;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  gap: 0px 10px;
-  outline: 3px solid transparent;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  color: var(--text-black);
-  resize: none;
-}
-textarea:focus-within {
-  outline: 3px solid var(--primary-50);
-  border: 1px solid var(--primary);
+#produto-descricao-error {
+  margin: 10px 0px 0px 0px;
 }
 
 .breadcrumb {
@@ -376,9 +349,30 @@ textarea:focus-within {
   font-family: "Jost";
   font-size: 10px;
 }
+.navbar__controller p.count-pedidos {
+  position: absolute;
+  top: -10px;
+  right: 5px;
+  background: #fcb3c5;
+  color: #fff;
+  border-radius: 120px;
+  font-size: 10px;
+  height: 20px;
+  width: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
 .navbar__cart {
   text-decoration: none;
   color: var(--primary);
+  position: relative;
 }
 .navbar__cart:hover {
   color: var(--primary-50);
@@ -387,6 +381,20 @@ textarea:focus-within {
   font-size: 17px;
 }
 .navbar__dropdown-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
   text-transform: capitalize;
   background-color: unset;
   -webkit-transition: all 0.3s ease;
@@ -400,6 +408,9 @@ textarea:focus-within {
 }
 .navbar__dropdown-button img {
   width: 25px;
+}
+.navbar__dropdown-button i {
+  color: var(--primary) !important;
 }
 .navbar :has(.navbar__dropdown.active) .navbar__dropdown-button {
   color: var(--text);
@@ -435,9 +446,6 @@ textarea:focus-within {
 .navbar__dropdown a:hover {
   background-color: var(--secondary);
   color: var(--text);
-}
-.navbar__dropdown a i {
-  padding: 0px 10px 0px 0px;
 }
 .navbar__box {
   display: -webkit-box;
@@ -558,7 +566,9 @@ body:has(.loading) {
   border: 1px solid #eee;
   -webkit-box-shadow: 0px 3px 5px 3px #f7f7f7;
           box-shadow: 0px 3px 5px 3px #f7f7f7;
+  background-color: #fff;
   margin: 10px 0px;
+  max-width: 260px;
 }
 .produto-card:hover {
   -webkit-transition: all 0.2s ease-in-out;
@@ -697,7 +707,11 @@ body:has(.loading) {
           transform: translateX(-50%);
 }
 .produto-card.produto-card__row .produto-card__status {
-  position: relative;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: #fff;
+  border-radius: 50%;
 }
 .produto-card.produto-card__row:hover {
   -webkit-transform: unset;
@@ -715,6 +729,9 @@ body:has(.loading) {
   background-color: var(--secondary);
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.produto-card.produto-card__row .produto-card__title {
+  width: 150px;
 }
 .produto-card #btn-produto-card {
   border: none;
@@ -785,9 +802,10 @@ body:has(.loading) {
   padding: 10px;
   color: var(--text-black);
   text-decoration: none;
+  border-radius: 4px;
 }
 .categorias-row a:hover {
-  background-color: var(--secondary);
+  background-color: var(--primary);
   color: var(--text);
 }
 
@@ -866,6 +884,9 @@ body:has(.loading) {
   right: 10px;
 }
 
+.carrinho {
+  margin: 30px 0px;
+}
 .carrinho__header {
   display: -webkit-box;
   display: -ms-flexbox;

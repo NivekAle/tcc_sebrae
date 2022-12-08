@@ -10,7 +10,7 @@ require($ROOT_DIR);
 
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+
 
 <head>
 	<?php require_once("../partials/head.php"); ?>
@@ -42,7 +42,7 @@ require($ROOT_DIR);
 							<label class="c-input__label" for="vendedor-email">Senha</label>
 							<div class="c-input__entry">
 								<input type="password" name="vendedor-senha" id="vendedor-senha" placeholder="*****">
-							<i class="far fa-eye" id="btn-toggle-password"></i>
+								<i class="far fa-eye" id="btn-toggle-password"></i>
 							</div>
 						</span>
 						<p>
@@ -60,8 +60,8 @@ require($ROOT_DIR);
 								Cadastre-se
 							</a>
 						</p>
+						<a href="http://localhost/tcc/">Voltar ao Início</a>
 					</div>
-
 				</div>
 			</div>
 		</section>

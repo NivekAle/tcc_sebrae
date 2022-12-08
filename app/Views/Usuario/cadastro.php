@@ -45,6 +45,7 @@ Session::BloquearLoginComSessao();
 							<p>
 								cadastre-se e compre sistemas que vão ajudar o avançar no crescimento da sua empresa ou serviço!
 							</p>
+							<a href="http://localhost/tcc/">Voltar ao Início</a>
 							<hr>
 							<form id="frm-cadastro-usuario" method="POST">
 								<div class="row">

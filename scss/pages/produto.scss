@@ -16,7 +16,11 @@
 	position: relative;
 	&-image {
 		width: 100%;
-		height: 400px;
+    height: 400px;
+    padding: 10px;
+    background-color: #eeeeee54;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 		img {
 			object-fit: cover;
 			object-position: top;
@@ -25,6 +29,7 @@
 	}
 	&-title {
 		// margin: 0px 0px 20px 0px;
+		text-transform: capitalize;
 	}
 
 	&-imagens {
@@ -79,7 +84,32 @@
 
 	&-detalhes-importantes {
 		border: 1px solid #ddd !important;
-		background-color: #eee;
-		padding: 15px;
+		border-radius: 4px;
+		// background-color: #eee;
+		padding: 10px;
+
+		.produto-atributos {
+			tbody {
+				tr {
+					margin: 10px 0px;
+					display: flex;
+					gap: 20px;
+					td {
+						font-size: 14px;
+						&:first-child {
+							// width: 30%;
+							font-weight: 800;
+							padding: 0px 10px 0px 0px;
+							text-transform: capitalize;
+						}
+						&:last-child {
+							// width: 70%;
+							text-overflow: ellipsis;
+							overflow: hidden;
+						}
+					}
+				}
+			}
+		}
 	}
 }

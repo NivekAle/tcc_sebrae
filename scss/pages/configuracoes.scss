@@ -1,0 +1,33 @@
+@import "../variables";
+@import "../components/navbar";
+@import "../components/hero";
+@import "../components/input";
+@import "../components/button";
+
+.c-input:has(.error i) .c-input__entry {
+	// background-color: #ff4a4a55;
+	border: 1px solid #af1717;
+	outline: 3px solid #ff676763;
+	position: relative;
+	margin: 0;
+	.error {
+		i {
+			color: #ff4a4a;
+		}
+	}
+	i:hover ~ .input-error {
+		display: block;
+		font-size: 13px;
+	}
+	.input-error {
+		position: absolute;
+		display: none;
+		top: -100%;
+		width: max-content;
+		background-color: #eb2f2f;
+		color: var(--text);
+		padding: 5px 10px;
+		border-radius: 6px;
+		transform: translateX(-50%);
+	}
+}

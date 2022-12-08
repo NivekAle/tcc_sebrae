@@ -9,13 +9,13 @@
 			</a>
 		</li>
 		<li>
-			<a href="http://localhost/tcc/app/Views/Produtos/adicionar.php" class="cta-vendedor">
-				Compras em Andamento
+			<a href="#" class="cta-vendedor">
+				Vendas
 				<i class="fas fa-angle-right"></i>
 			</a>
 		</li>
 		<li>
-			<a href="http://localhost/tcc/app/Views/Vendedor/estatisticas.php" class="cta-vendedor">
+			<a href="#" class="cta-vendedor">
 				Estatísticas
 				<i class="fas fa-angle-right"></i>
 			</a>

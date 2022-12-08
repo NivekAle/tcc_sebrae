@@ -39,6 +39,8 @@ $("#frm-login-usuario").validate(
 				beforeSend: function () {
 					$("#btn-login").prop("disabled", "true")
 					$("#btn-login").html("Entrando");
+					$("#btn-login").css("background-color", "#d71549");
+					$("#btn-login").css("cursor", "no-drop");
 				},
 				success: function ({ usuario, data }) {
 					if (data.permissao) {
@@ -47,6 +49,12 @@ $("#frm-login-usuario").validate(
 							window.location.href = "http://localhost/tcc/app/Views/Produtos/index.php"
 						}, 2000);
 					} else {
+						setTimeout(() => {
+							$("#btn-login").css("background-color", "#e7295d");
+							$("#btn-login").css("cursor", "pointer");
+							$("#btn-login").removeAttr("disabled");
+							$("#btn-login").html("Entrar");
+						}, 500);
 						Toast(data.mensagem);
 						// ToastAlert(data.mensagem);
 					}

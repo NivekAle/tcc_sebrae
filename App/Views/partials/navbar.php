@@ -25,14 +25,17 @@
 					<div class="navbar__controller">
 						<a href="http://localhost/tcc/app/Views/Carrinho/carrinho.php" class="navbar__cart">
 							<i class="fas fa-shopping-cart"></i>
+							<?php if (isset($_SESSION['carrinho'])) { ?>
+								<p class="count-pedidos"><?php echo count($_SESSION['carrinho']) ?></p>
+							<?php } ?>
 						</a>
 						<button class="navbar__dropdown-button">
 							<img src="http://localhost/tcc/public/images/avatar-user-r.png" alt="">
 						</button>
 						<ul class="navbar__dropdown">
-							<li>
-								<a href="http://localhost/tcc/app/Views/Produtos/configurações.php">Configurações</a>
-							</li>
+							<!-- <li>
+								<a href="http://localhost/tcc/app/Views/Usuario/configuracoes.php">Configurações</a>
+							</li> -->
 							<li>
 							</li>
 							<li>

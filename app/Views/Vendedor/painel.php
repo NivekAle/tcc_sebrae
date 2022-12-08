@@ -15,12 +15,12 @@ require($ROOT_DIR);
 Session::VerificarSessao();
 Base::IsSeller();
 
-$todos_produtos_vendedor = ProdutosDTO::ProdutosVendedor($_SESSION["sessao_usuario"]->id);
+// $todos_produtos_vendedor = ProdutosDTO::ProdutosVendedor($_SESSION["sessao_usuario"]->id);
 
 // $todas_imagens = Imagem::PegarTodasImagens();
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+
 
 <head>
 	<?php require_once("../partials/head.php"); ?>
@@ -72,17 +72,21 @@ $todos_produtos_vendedor = ProdutosDTO::ProdutosVendedor($_SESSION["sessao_usuar
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3">
-						<?php require("../partials/vendedor-actions.php"); ?>
-						<div class="my-3">
-							<p class="m-0">Preço</p>
-							<select data-group="filtros-produtos" name="filtrar-pro-preco" id="filtrar-pro-preco" class="c-input__entry">
-								<option value="">Selecione o filtro</option>
-								<option value="desc">Preço decrescente</option>
-								<option value="asc">Preço crescente</option>
-							</select>
-							<button class="c-btn c-btn__secondary" id="btn-filtrar-produtos-vendedor">
-								Aplicar
-							</button>
+						<div class="actions-content" style="position: sticky; top:20px;">
+							<?php require("../partials/vendedor-actions.php"); ?>
+							<div class="my-3">
+								<p class="m-0">Preço</p>
+								<select data-group="filtros-produtos" name="filtrar-pro-preco" id="filtrar-pro-preco" class="c-input__entry">
+									<option value="null">Selecione o filtro</option>
+									<option value="desc">Preço decrescente</option>
+									<option value="asc">Preço crescente</option>
+									<option value="desativados">Somente Desativados</option>
+									<option value="ativados">Somente Ativados</option>
+								</select>
+								<button class="c-btn c-btn__secondary my-3" id="btn-filtrar-produtos-vendedor">
+									Aplicar
+								</button>
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-9">
@@ -107,55 +111,85 @@ $todos_produtos_vendedor = ProdutosDTO::ProdutosVendedor($_SESSION["sessao_usuar
 								</div>
 							</div>
 						</div> -->
-						<div class="row">
-							<?php foreach ($todos_produtos_vendedor as $key => $produto) { ?>
+						<div class="row" id="produtos">
+							<!-- <php foreach ($todos_produtos_vendedor as $key => $produto) { ?>
 								<div class="col-lg-12">
-									<div class="produto-card produto-card__row" id="produto-<?= $produto->id; ?>">
+									<div class="produto-card produto-card__row" id="produto-<php echo $produto->id; ?>">
 										<div class="produto-card__header">
-											<!-- <div class="produto-card__image"></div> -->
-											<img class="produto-card__image" src="<?php echo Base::$url_imagens . $produto->caminho; ?>" alt="">
+											<img class="produto-card__image" src="<php echo Base::$url_imagens . $produto->caminho; ?>" alt="">
 										</div>
 										<div class="produto-card__body">
 											<span>
 												<h6 class="produto-card__title">
-													<a href="<?php echo Base::$url_views . "/Produtos/produto.php?id=" .  $produto->id ?>"><?php echo $produto->nome ?></a>
+													<a href="<php echo Base::$url_views . "/Produtos/produto.php?id=" .  $produto->id ?>"><php echo $produto->nome ?></a>
 												</h6>
 												<p>
-													R$ <?php echo number_format($produto->preco, 2, ",", ".") ?>
+													R$ <php echo number_format($produto->preco, 2, ",", ".") ?>
 												</p>
 											</span>
-											<?php
+											<php
 											echo !$produto->status ? '<div class="produto-card__status"><i class="fas fa-exclamation-circle"></i><span class="info">Este produto esta desativado.</span></div>' : "";
 											?>
 										</div>
 										<div class="produto-card__footer">
-											<button id="btn-produto-card" onclick="CardDropdown(<?php echo $produto->id  ?>);">
+											<button id="btn-produto-card" onclick="CardDropdown(<php echo $produto->id; ?>);">
 												<i class="fas fa-ellipsis-v"></i>
 											</button>
 										</div>
 										<div class="produto-card__dropdown">
 											<ul>
 												<li>
-													<a href="<?php echo "http://localhost/tcc/app/Views/Vendedor/editar.php?id=" . $produto->id ?>">Editar</a>
+													<a href="<php echo "http://localhost/tcc/app/Views/Vendedor/editar.php?id=" . $produto->id ?>">Editar</a>
 												</li>
 												<li>
-													<a href="<?php echo "http://localhost/tcc/app/Views/Vendedor/remover.php?id=" . $produto->id ?>">Desativar</a>
+													<a href="<php echo "http://localhost/tcc/app/Views/Vendedor/remover.php?id=" . $produto->id ?>">Desativar</a>
 												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-							<?php } ?>
+							<php } ?> -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
+
+		<div class="modal" id="modal-desativar-produto">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Desativar Produto</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" id="input-desativar-produto">
+						<p>Tem certeza que quer desativar este produto?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="c-btn c-btn__neutral" id="btn-modal-fechar-desativar-produto">Cancelar</button>
+						<button type="button" class="c-btn c-btn__primary" id="btn-modal-confirmar-desativar-produto">Confirmar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</main>
 
+	<?php require_once("../partials/toast.php"); ?>
+
 	<?php require_once("../partials/assets.php"); ?>
-	<script src="http://localhost/tcc/public/js/painel.js"></script>
+	<script type="module" src="<?php echo Base::$url_scripts . "toast.js" ?>"></script>
+	<script type="module" src="<?php echo Base::$url_scripts . "painel.js" ?>"></script>
+
+	<script type="module">
+		// Pegar Produtos do Vendedor - Desativados ou Não
+		import {
+			PegarProdutosVendedor
+		} from "../../../public/js/painel.js";
+		PegarProdutosVendedor(<?php echo $_SESSION["sessao_usuario"]->id; ?>);
+	</script>
 </body>
 
 </html>

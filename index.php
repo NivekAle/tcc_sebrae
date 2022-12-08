@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App;
 
 use App\Core\Base;
@@ -11,12 +12,12 @@ require($ROOT_DIR);
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+
 
 <head>
 	<?php require_once("./app/Views/partials/head.php") ?>
-	<link rel="stylesheet" href="http://localhost/tcc/public/css/index.css">
-	<title> Innovament</title>
+	<link rel="stylesheet" href="<?php echo Base::$url_styles . "index.css" ?>">
+	<title>Innovament</title>
 </head>
 
 <body>
@@ -55,7 +56,7 @@ require($ROOT_DIR);
 								<span>
 									<img src="<?php echo Base::$url_imagens . "../images/avatar-user-r.png" ?>" alt="">
 									&nbsp;
-									Criar uma conta como usuario comum
+									Criar uma conta como usuário comum
 								</span>
 								<i class="fas fa-chevron-right"></i>
 							</a>

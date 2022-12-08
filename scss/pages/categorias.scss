@@ -1,0 +1,23 @@
+@import "../variables";
+@import "../components/navbar";
+@import "../components/categorias";
+@import "../components/produto-card";
+@import "../components/button";
+@import "../components/hero";
+
+.search-not-found {
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		p {
+			font-size: 20px;
+		}
+	}
+
+	&__image {
+		width: 300px;
+	}
+}

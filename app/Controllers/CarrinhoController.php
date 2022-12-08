@@ -37,7 +37,7 @@ class CarrinhoController
 					"imagens" => $imagens
 					// "quantidade" => 1,
 				);
-				Base::Response("Produto foi adicionado no seu carrinho!", null, 0);
+				Base::Response("Produto foi adicionado no seu carrinho!", null, 1);
 			}
 		} else {
 			Base::Response("Não foi possível adicionar o produto ao carrinho, tente novamente mais tarde.", null, 0);

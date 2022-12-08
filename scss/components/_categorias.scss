@@ -11,8 +11,9 @@
 		padding: 10px;
 		color: var(--text-black);
 		text-decoration: none;
+		border-radius: 4px;
 		&:hover {
-			background-color: var(--secondary);
+			background-color: var(--primary);
 			color: var(--text);
 		}
 	}

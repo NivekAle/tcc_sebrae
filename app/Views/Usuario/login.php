@@ -11,7 +11,7 @@ require($ROOT_DIR);
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+
 
 <head>
 	<?php require_once("../partials/head.php"); ?>
@@ -62,6 +62,7 @@ require($ROOT_DIR);
 								Cadastre-se
 							</a>
 						</p>
+						<a href="http://localhost/tcc/">Voltar ao Início</a>
 					</div>
 				</div>
 			</div>

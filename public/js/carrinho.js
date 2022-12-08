@@ -16,6 +16,9 @@ $("#btn-adicionar-carrinho").click(function (e) {
 				Toast(response.data.mensagem);
 			} else {
 				Toast("O Produto foi adicionado no carrinho");
+				setTimeout(() => {
+					window.location.reload();
+				}, 1000);
 			}
 		}
 	});
@@ -118,7 +121,6 @@ $(document).on("click", "#btn-remover-produto", function () {
 		url: `http://localhost/tcc/app/Controllers/CarrinhoController.php?remover_produto=${$(this).attr("data-produto")}`,
 		dataType: "json",
 		success: function (response) {
-			// console.log(response);
 			if (response.status) {
 				PegarCarrinho();
 			} else {
@@ -127,11 +129,6 @@ $(document).on("click", "#btn-remover-produto", function () {
 		}
 	});
 });
-
-// $(document).on("load", ".carrinho_total", function () {
-
-// 	$(".carrinho__total").html(`d`);
-// });
 
 function CarrinhoTotal(precos_produtos) {
 	var total = precos_produtos.map((preco) => parseInt(preco)).reduce((acumulador, elementoAtual) => acumulador + elementoAtual);

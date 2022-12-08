@@ -30,7 +30,7 @@ if (!empty($_GET["id"])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+
 
 <head>
 	<?php require_once("../partials/head.php"); ?>

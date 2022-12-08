@@ -4,10 +4,6 @@ $("#produto-preco").mask("000.000.000.000.000,00", { reverse: true });
 
 const formatarPrecoDatabase = (preco) => preco.replace(/\./, "").replace(/\,/, ".");
 
-var atributos = [];
-
-
-
 $("#frm-adicionar-produto").validate(
 	{
 		rules: {
@@ -15,7 +11,8 @@ $("#frm-adicionar-produto").validate(
 				required: true
 			},
 			"produto-descricao": {
-				required: true
+				required: true,
+				maxlength: 255,
 			},
 			"produto-preco": {
 				required: true
@@ -26,20 +23,20 @@ $("#frm-adicionar-produto").validate(
 		},
 		messages: {
 			"produto-nome": {
-				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório. Por favor preencha.</span>`,
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório. Por favor preencha.</span>`,
 			},
 			"produto-descricao": {
-				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório. Por favor preencha.</span>`
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">A descrição é obrigatória. Por favor preencha.</span>`,
+				// maxlength: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Máximo de 255 caractéres.</span>`
 			},
 			"produto-preco": {
-				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório. Por favor preencha.</span>`
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório. Por favor preencha.</span>`
 			},
 			"produto-categoria": {
-				required: `<i class="fas fa-exclamation-triangle"></i><span class="login-error">Este campo é obrigatório. Por favor preencha.</span>`
+				required: `<i class="fas fa-exclamation-triangle"></i><span class="input-error">Este campo é obrigatório. Por favor preencha.</span>`
 			}
 		},
 		submitHandler: function (form) {
-
 			$.ajax({
 				type: "POST",
 				url: "http://localhost/tcc/app/Controllers/ProdutoController.php",
@@ -78,6 +75,7 @@ $("#frm-adicionar-produto").validate(
 						$("body .loading").remove("");
 						window.location.href = `http://localhost/tcc/app/Views/Produtos/imagens.php?id=${responseParse.data.produto.id}`;
 					}, 1000);
+					return false;
 				}
 			});
 		}
@@ -108,14 +106,12 @@ $("#btn-adicionar-atributo").click(function (event) {
 		</tr>
 		`;
 		$("#table-atributos tbody").append(tag_table);
+		$("#produto-atributo-nome").val("");
+		$("#produto-atributo-valor").val("");
 	}
+	// } else {
+	// 	Toast(`<p>Os campos de <strong>atributos</strong> não podem estar vazios.</p>`);
+	// }
 
 });
 
-
-function PegarAtributos() {
-	var atributos = [];
-	$(document).on("load", "td[data-attr='']", function () {
-
-	});
-}

@@ -34,13 +34,13 @@ require($ROOT_DIR);
 					</div>
 					<div class="col-lg-8" style="padding-left: 0px;">
 						<div class="form-content">
-							<!-- <img src="<= Base::$url_imagens . "../images/logo.png" ?>" alt=""> -->
 							<h3>
 								Registre-se
 							</h3>
 							<p>
 								cadastre-se e compre sistemas que vão ajudar o avançar no crescimento da sua empresa ou serviço!
 							</p>
+							<a href="http://localhost/tcc/">Voltar ao Início</a>
 							<hr>
 							<form id="frm-cadastro-vendedor">
 								<div class="row">
@@ -118,12 +118,15 @@ require($ROOT_DIR);
 										</span>
 									</div>
 									<div class="col-lg-4">
-										<label for="">País</label>
-										<span class="c-input">
-											<div class="c-input__entry">
-												<input type="text" name="vendedor-pais" id="vendedor-pais">
-											</div>
-										</span>
+										<label for="">Pais</label>
+										<select name="vendedor-pais" id="vendedor-pais" class="c-input__entry">
+											<option selected="selected" value="">Selecionar o Pais</option>
+											<?php foreach (Base::$paises as $index => $pais) { ?>
+												<option value="<?= $pais; ?>">
+													<?= $pais; ?>
+												</option>
+											<?php } ?>
+										</select>
 									</div>
 									<div class="col-lg-6">
 										<label for="">Senha</label>

@@ -45,6 +45,23 @@ class Usuario
 		);
 		return $this;
 	}
+
+	public function Editar()
+	{
+		return (new Database('Usuarios'))->update(" id = '" . $this->id . "'",
+			[
+				"nome_completo" => $this->nome_completo,
+				"email" => $this->email,
+				"senha" => $this->senha,
+				"cpf" => $this->cpf,
+				"data_nascimento" => $this->data_nascimento,
+				"cidade" => $this->cidade,
+				"estado" => $this->estado,
+				"pais" => $this->pais,
+				"telefone" => $this->telefone,
+			]
+		);
+	}
 }
 
 // ERRO : nao reconhece o campo estado.

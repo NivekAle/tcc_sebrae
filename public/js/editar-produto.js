@@ -1,4 +1,8 @@
+import { Toast } from "./Toast.js";
+
 $("#produto-preco").mask("000.000.000.000.000,00", { reverse: true });
+
+const formatarPrecoDatabase = (preco) => preco.replace(/\./, "").replace(/\,/, ".");
 
 $("#form-editar-produto").validate(
 	{
@@ -30,9 +34,31 @@ $("#form-editar-produto").validate(
 				required: "Este campo é obrigatório.",
 			},
 		},
-		submitHandler: function (e) {
-			e.preventDefault();
-			console.log(this);
+		submitHandler: function (form) {
+			$.ajax({
+				type: "POST",
+				url: "http://localhost/tcc/app/Controllers/ProdutoController.php",
+				data: {
+					"editar-produto": {
+						"id": $("#produto-id").val(),
+						"nome": $("#produto-nome").val(),
+						"descricao": $("#produto-descricao").val(),
+						"preco": formatarPrecoDatabase($("#produto-preco").val()),
+						"categoria": $("#produto-categoria").val(),
+					}
+				},
+				success: function (response) {
+					var data_json = JSON.parse(response);
+					if (data_json.status == 0) {
+						Toast(data_json.data.mensagem);
+					} else {
+						Toast(data_json.data.mensagem);
+						setTimeout(() => {
+							window.location.href = "http://localhost/tcc/app/Views/Vendedor/painel.php";
+						}, 2000);
+					}
+				}
+			});
 		}
 	}
 );

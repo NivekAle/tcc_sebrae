@@ -16,7 +16,7 @@ class Database
 {
 
 	const HOST = "localhost";
-	const NAME = "tech_solutions";
+	const NAME = "innovament";
 	const DB_USER = "root";
 	const DB_PS = "";
 
@@ -33,7 +33,7 @@ class Database
 	private function SetConnection()
 	{
 		try {
-			$this->connection = new PDO("mysql:host=localhost;dbname=tech_solutions;", "root", "");
+			$this->connection = new PDO("mysql:host=localhost;dbname=innovament;", "root", "");
 			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $erro) {
 			die("Error" . $erro->getMessage());
@@ -57,7 +57,7 @@ class Database
 		$fields = array_keys($data);
 		$binds = array_pad([], count($data), '?');
 
-		$query = 'INSERT INTO tech_solutions.' . $this->table . ' (' . implode(',', $fields) . ') values (' . implode(',', $binds) . ')';
+		$query = 'INSERT INTO innovament.' . $this->table . ' (' . implode(',', $fields) . ') values (' . implode(',', $binds) . ')';
 
 		// echo print_r($query);
 		// executa o insert;
@@ -73,7 +73,7 @@ class Database
 		$order = strlen($order) ? ' ORDER BY ' . $order : '';
 		$limit = strlen($limit) ? ' LIMIT ' . $limit : '';
 
-		$query = 'SELECT ' . $fields . ' FROM tech_solutions.' . $this->table  . $where . $order . $limit;
+		$query = 'SELECT ' . $fields . ' FROM innovament.' . $this->table  . $where . $order . $limit;
 
 		// echo $query;
 		// die();
@@ -85,7 +85,7 @@ class Database
 		//dados da query
 		$fields = array_keys($values);
 
-		$query = "UPDATE tech_solutions." . $this->table . " SET " . implode('=?,', $fields) . "=? WHERE  " . $where;
+		$query = "UPDATE innovament." . $this->table . " SET " . implode('=?,', $fields) . "=? WHERE  " . $where;
 
 		$this->Execute($query, array_values($values));
 		return true;
@@ -93,7 +93,7 @@ class Database
 
 	public function delete($where)
 	{
-		$query = "DELETE FROM tech_solutions." . $this->table . " WHERE " . $where;
+		$query = "DELETE FROM innovament." . $this->table . " WHERE " . $where;
 
 		$this->Execute($query);
 
@@ -140,23 +140,33 @@ class Database
 
 	public function produtosVendedor($id_vendedor)
 	{
-		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Produtos.status ,Imagens.caminho
-		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id_vendedor = $id_vendedor GROUP BY Imagens.id_produto";
+		$query = "SELECT
+								Produtos.id,
+								Vendedores.nome_completo ,
+								Produtos.nome,
+								Produtos.preco,
+								Produtos.likes,
+								Produtos.status ,
+								Imagens.caminho
+							FROM Produtos
+							JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id
+							LEFT JOIN Imagens ON Produtos.id = Imagens.id_produto
+							WHERE Produtos.id_vendedor = '$id_vendedor' GROUP BY Produtos.id";
 
 		return $this->Execute($query);
 	}
 
+	// para a home
 	public function pegarProdutos()
 	{
-		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.status = 1  GROUP BY Imagens.id_produto;";
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.status = 1 GROUP BY Produtos.id;";
 
 		return $this->Execute($query);
 	}
 
 	public function PegarUnicoProduto($id_produto)
 	{
-		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho
-		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id = $id_produto GROUP BY Imagens.id_produto;";
+		$query = "SELECT Produtos.id, Produtos.id_categoria, Vendedores.nome_completo, Produtos.nome, Produtos.preco, Produtos.likes,Produtos.descricao, Imagens.caminho FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id = '$id_produto';";
 
 		return $this->Execute($query);
 	}
@@ -168,10 +178,11 @@ class Database
 		return $this->Execute($query);
 	}
 
+	// ! remover
 	public function Filtragem($filtros)
 	{
 		$filter = array_values($filtros);
-		
+
 		echo '<pre>';
 		print_r($filter);
 		echo '<pre>';
@@ -180,5 +191,50 @@ class Database
 		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes, Imagens.caminho
 		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.status = 1 GROUP BY Imagens.id_produto
 		";
+	}
+
+	public function QueryFiltrarPorCategoria($nome_categoria, $limit = false)
+	{
+		$query = "SELECT
+								Produtos.id,
+    						Vendedores.nome_completo ,
+    						Produtos.nome,
+    						Produtos.preco,
+    						Produtos.likes,
+    						Produtos.status ,
+    						Imagens.caminho,
+    						Categorias.nome AS 'nome_categoria'
+							FROM Produtos
+							JOIN Categorias ON Produtos.id_categoria = Categorias.id
+							JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id
+							LEFT JOIN Imagens ON Produtos.id = Imagens.id_produto
+							WHERE Categorias.nome = '$nome_categoria' AND Produtos.status = 1 GROUP BY Produtos.id LIMIT 12 ";
+		return $this->Execute($query);
+	}
+
+	public function ProdutosPorCategoria($id_categoria, $limit = false)
+	{
+		$query = "SELECT
+								Produtos.id,
+    						Vendedores.nome_completo ,
+    						Produtos.nome,
+    						Produtos.preco,
+    						Produtos.likes,
+    						Produtos.status ,
+    						Imagens.caminho,
+    						Categorias.nome AS 'nome_categoria'
+							FROM Produtos
+							JOIN Categorias ON Produtos.id_categoria = Categorias.id
+							JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id
+							LEFT JOIN Imagens ON Produtos.id = Imagens.id_produto
+							WHERE Categorias.id = '$id_categoria' AND Produtos.status = 1 GROUP BY Produtos.id";
+		return $this->Execute($query);
+	}
+
+	public function QueryEditarProduto($id_produto)
+	{
+		$query = "SELECT Produtos.id, Vendedores.nome_completo , Produtos.nome, Produtos.preco, Produtos.likes,Produtos.descricao, Imagens.caminho
+		FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id WHERE Produtos.id = $id_produto";
+		return $this->Execute($query);
 	}
 }

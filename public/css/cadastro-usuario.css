@@ -67,36 +67,8 @@
   font-size: 15px;
 }
 
-textarea {
-  margin: 10px 0px;
-  padding: 5px 15px;
-  border: 1px solid var(--text-dark);
-  border-radius: 6px;
-  display: block;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  gap: 0px 10px;
-  outline: 3px solid transparent;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  color: var(--text-black);
-  resize: none;
-}
-textarea:focus-within {
-  outline: 3px solid var(--primary-50);
-  border: 1px solid var(--primary);
+#produto-descricao-error {
+  margin: 10px 0px 0px 0px;
 }
 
 .Toast {
@@ -114,6 +86,7 @@ textarea:focus-within {
           transform: translateX(calc(100% + 30px));
   -webkit-transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 99999;
 }
 .Toast.active {
   -webkit-transform: translateX(0%);
@@ -250,7 +223,7 @@ textarea:focus-within {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  padding: 10px 20px;
+  padding: 5px 15px;
   border-radius: 6px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;

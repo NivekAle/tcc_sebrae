@@ -1,7 +1,7 @@
 
 
 
-export function Toast(msg, timer = 2000) {
+export function Toast(msg, timer = 2500) {
 	$(".Toast").addClass("active");
 	$(".Toast-progress").addClass("active");
 	$(".Toast-text").html(msg);

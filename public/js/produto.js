@@ -1,4 +1,4 @@
-
+import { Toast } from './Toast.js'
 
 // pegar produto
 function PegarProduto() {
@@ -19,8 +19,16 @@ function PegarProduto() {
 		dataType: "JSON",
 		success: function (response) {
 			const { data: { body: { Produto } } } = response;
-			console.log(response);
-			InserirImagens(Produto.imagens);
+			if (response.status) {
+				console.log(response);
+				InserirImagens(Produto.imagens);
+				CarregarAtributos(Produto.atributos);
+			} else {
+				Toast("Houve um erro ao carregar o produto, tente novamente mais tarde");
+				setTimeout(() => {
+					window.location.href = `http://localhost/tcc/app/Views/Produtos/index.php`;
+				}, 2500);
+			}
 		}
 	});
 }
@@ -120,3 +128,46 @@ function CarroselImage(array_imagens) {
 $("#btn-todas-imagens").click(function () {
 	$(".carrosel").toggleClass("show");
 });
+
+
+// Inserir atributos no HTML
+function CarregarAtributos(array_atributos) {
+	if (array_atributos == [] || array_atributos.length) {
+		array_atributos.forEach((element, item) => {
+			if (VerificarLink(element.valor)) {
+				var tag_tr = `
+				<tr>
+					<td colspan="1">
+						${element.nome}
+					</td>
+					<td colspan="1" title="${element.valor}">
+						<a target="_blank" href="${element.valor}">${element.valor}</a>
+					</td>
+				</tr>
+				`;
+			}
+			else {
+				var tag_tr = `
+				<tr>
+					<td colspan="1" title="${element.nome}">
+						${element.nome} :
+					</td>
+					<td colspan="1" title="${element.valor}">
+						${element.valor}
+					</td>
+				</tr>
+			`;
+			}
+			$(".produto-atributos tbody").append(tag_tr)
+		});
+	} else {
+		Toast("Não é possível carregar os atributos deste produto");
+		$(".produto-atributos").html(`<p class="text-center">Houve um erro ao carregar os atributos deste produto.</p>`);
+	}
+}
+
+// verificando se o atributo é um link
+function VerificarLink(valor) {
+	var isLink = valor.substring(valor.indexOf("https"), 5);
+	return isLink === "https" ? true : false;
+}

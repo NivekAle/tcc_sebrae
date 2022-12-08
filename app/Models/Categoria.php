@@ -19,8 +19,8 @@ class Categoria
 		return (new Database('categorias'))->select($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
 	}
 
-	public static function PegarCategoria($id_produto)
+	public static function PegarCategoria($id_categoria)
 	{
-		return (new Database('categorias'))->joinCategoria($id_produto)->fetchObject(self::class);
+		return (new Database('categorias'))->select(" id = '$id_categoria' ", null, null)->fetchObject(self::class);
 	}
 }

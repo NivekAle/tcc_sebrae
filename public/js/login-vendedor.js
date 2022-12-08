@@ -45,6 +45,8 @@ $("#frm-login-vendedor").validate(
 				beforeSend: function () {
 					$("#btn-login").prop("disabled", "true")
 					$("#btn-login").html("Entrando");
+					$("#btn-login").css("background-color", "#d71549");
+					$("#btn-login").css("cursor", "no-drop");
 				},
 				success: function (response) {
 					if (response.data.permissao) {
@@ -54,6 +56,12 @@ $("#frm-login-vendedor").validate(
 						}, 2000);
 					}
 					else if (response.status == 0) {
+						setTimeout(() => {
+							$("#btn-login").css("background-color", "#e7295d");
+							$("#btn-login").css("cursor", "pointer");
+							$("#btn-login").removeAttr("disabled");
+							$("#btn-login").html("Entrar");
+						}, 500);
 						Toast(response.data.mensagem);
 					}
 				}

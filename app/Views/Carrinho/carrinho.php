@@ -33,18 +33,17 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 
 		<div class="todas-categorias bg-light">
 			<div class="container">
-
 				<div class="row">
 					<div class="categorias-row">
 						<?php foreach ($todas_categorias as $key => $value) { ?>
-							<a href="<?= "http://localhost/tcc/app/Views/Produtos/index.php?cat=" . $value->id ?>"><?= $value->nome ?></a>
+							<a href="<?= "http://localhost/tcc/app/Views/Categorias/index.php?search_cat=" . $value->id ?>"><?= $value->nome ?></a>
 						<?php } ?>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<header class="header-page">
+		<!-- <header class="header-page">
 			<div class="strip">
 				<div class="container">
 					<div class="row align-items-center">
@@ -61,19 +60,18 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 								</ul>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
-		</header>
+		</header> -->
 
 		<section class="carrinho">
 			<div class="container">
 				<header class="carrinho__header">
-					<h3>Meu Carrinho</h3>
+					<h3 class="m-0">Meu Carrinho</h3>
 					<div class="gap-3">
-						<button id="btn-sincronizar-carrinho" class="c-btn c-btn__secondary c-btn__secondary--outline">
-							<i class="fas fa-sync"></i>
+						<button id="btn-sincronizar-carrinho" class="c-btn  c-btn__secondary c-btn__secondary--outline">
+							Atualizar carrinho
 						</button>
 						<button id="btn-limpar-carrinho" class="c-btn c-btn__neutral">
 							Limpar carrinho

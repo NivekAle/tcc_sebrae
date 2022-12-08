@@ -14,6 +14,11 @@ Session::VerificarSessao();
 
 $todas_categorias = Categoria::PegarTodasCategorias();
 
+if (empty($_GET["search"]) || $_GET["search"] == "search") {
+	header("Location: http://localhost/tcc/app/Views/Produtos/index.php");
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,14 +36,13 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 	<?php property_exists($_SESSION["sessao_usuario"], "cnpj") ? require_once("../partials/navbar-vendedor.php") : require_once("../partials/navbar.php");  ?>
 
 	<main>
-
+		<!-- Buscar pro categoria -->
 		<div class="todas-categorias bg-light">
 			<div class="container">
-
 				<div class="row">
 					<div class="categorias-row">
 						<?php foreach ($todas_categorias as $key => $value) { ?>
-							<a href="<?= "http://localhost/tcc/app/Views/Produtos/index.php?cat=" . $value->id ?>"><?= $value->nome ?></a>
+							<a href="<?= "http://localhost/tcc/app/Views/Categorias/index.php?search_cat=" . $value->id ?>"><?= $value->nome ?></a>
 						<?php } ?>
 					</div>
 				</div>
@@ -47,13 +51,16 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 
 		<section class="busca">
 			<div class="container">
+				<h4>
+					Buscando por <?php echo $_GET["search"]; ?>
+				</h4>
 				<div class="row">
-					<div class="col-lg-12 mb-3">
+					<!-- <div class="col-lg-12 mb-3">
 						<button class="c-btn c-btn__primary" id="btn-aplicar-filtros">
 							Aplicar Filtros
 						</button>
-					</div>
-					<div class="col-lg-4">
+					</div> -->
+					<!-- <div class="col-lg-4">
 						<div class="box-filtro">
 							<h5>Tecnologias</h5>
 							<form id="filtro-preco">
@@ -81,8 +88,8 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 								</ul>
 							</form>
 						</div>
-					</div>
-					<div class="col-lg-8">
+					</div> -->
+					<div class="col-lg-12">
 						<div class="status-busca"></div>
 						<div class="filtragens">
 							<div class="box-min">

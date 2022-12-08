@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Database\Database;
+use PDO;
 
 $ROOT_DIR =  $_SERVER["DOCUMENT_ROOT"] . "tcc/vendor/autoload.php";
 
@@ -33,5 +34,9 @@ class AtributosProdutos
 	public function VerificarDuplicidade($nome_attr)
 	{
 		return (new Database("atributos_produtos"))->select(" nome = '$nome_attr' ")->fetchObject(self::class);
+	}
+
+	public static function PegarAtributos($id_produto) {
+		return (new Database("atributos_produtos"))->select(" id_produto = '$id_produto' ")->fetchAll(PDO::FETCH_CLASS, self::class);
 	}
 }

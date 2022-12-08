@@ -32,10 +32,7 @@
 						</span>
 					</form>
 					<button class="navbar__dropdown-button">
-						<!-- <i class="fas fa-user-circle"></i> -->
 						<img src="http://localhost/tcc/public/images/avatar-vendedor-r.png" alt="">
-						<!-- &#127;
-					&#127; -->
 						<!-- <i class="fas fa-chevron-down"></i> -->
 					</button>
 					<ul class="navbar__dropdown">
@@ -45,12 +42,12 @@
 								Painel
 							</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="http://localhost/tcc/app/Views/Produtos/configurações.php">
 								<i class="fas fa-sliders-h"></i>
 								Configurações
 							</a>
-						</li>
+						</li> -->
 						<li>
 							<a href="http://localhost/tcc/sair.php">
 								<i class="fas fa-sign-out-alt"></i>

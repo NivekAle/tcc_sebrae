@@ -146,17 +146,6 @@ $(document).ready(function () {
 		$("#vendedor-cnpj-error").remove();
 		$("#vendedor-cpf").mask("00000000000");
 	}
-	// } else if ($("#seleciona-cnpj").is(":checked")) {
-	// 	$("label[id='vendedor-identificador']").html("CNPJ");
-	// 	$("input[data-js='render-option'").prop("name", "vendedor-cnpj");
-	// 	$("input[data-js='render-option'").prop("id", "vendedor-cnpj");
-	// 	$("input[data-js='render-option'").prop("required", "true");
-	// 	// $("input[data-js='render-option'").prop("maxlength", "14");
-	// 	$("input[data-js='render-option'").val("");
-	// 	$("#box-indetificador").css("opacity", "1");
-	// 	$(".vendedor-cpf-error").css("opacity", "0");
-	// 	$("#vendedor-cnpj").mask("00000000000000");
-	// }
 });
 
 // mostrar senha

@@ -1,6 +1,6 @@
-create database tech_solutions;
+create database innovament;
 
-use tech_solutions;
+use innovament;
 
 create table Usuarios(
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -8,11 +8,11 @@ create table Usuarios(
     email VARCHAR(255) NOT NULL UNIQUE,
     senha VARCHAR(20) NOT NULL,
     cpf VARCHAR(11) NOT NULL,
-    
+
     data_nascimento DATE NOT NULL,
 	-- endereco VARCHAR(255) NOT NULL,
     cidade VARCHAR(255) NOT NULL,
-    estado﻿ VARCHAR(255) NOT NULL,
+    estado VARCHAR(255) NOT NULL,
     pais VARCHAR(255) NOT NULL,
     telefone VARCHAR(11) NOT NULL UNIQUE,
     criado_em  timestamp
@@ -27,7 +27,7 @@ create table Vendedores (
     cnpj VARCHAR(14) NULL UNIQUE,
     cidade VARCHAR(255) NOT NULL,
     pais VARCHAR(255) NOT NULL,
-    estado﻿ VARCHAR(255) NOT NULL,
+    estado VARCHAR(255) NOT NULL,
     criado_em  timestamp
 );
 
@@ -44,7 +44,7 @@ create table Produtos (
     preco DECIMAL(10,2),
     likes INT DEFAULT 0 ,
     criado_em timestamp,
-    
+
     -- FK
     id_vendedor INT,
     CONSTRAINT FK_Produto_Vendedor FOREIGN KEY (id_vendedor) REFERENCES Vendedores(id),
@@ -59,7 +59,7 @@ create table Tags(
 
 create table Tags_Produtos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    
+
 	id_produto INT,
     CONSTRAINT FK_Produto_Tag FOREIGN KEY (id_produto) REFERENCES Produtos(id),
     id_tag INT,
@@ -70,7 +70,7 @@ create table Imagens (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     caminho VARCHAR(255) NOT NULL,
     criado_em timestamp,
-    
+
     id_produto INT,
     CONSTRAINT FK_Produto_Imagem FOREIGN KEY (id_produto) REFERENCES Produtos(id)
 );
@@ -79,7 +79,7 @@ create table Vendas (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     valor DECIMAL,
     data_compra timestamp,
-    
+
     -- FK
     id_produto INT,
     CONSTRAINT FK_Venda_Produto FOREIGN KEY (id_produto) REFERENCES Produtos(id),
@@ -101,7 +101,7 @@ create table Comentarios (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     conteudo TEXT NOT NULL,
     criado_em timestamp,
-    
+
     -- FK
     id_produto INT,
     CONSTRAINT FK_Comentario_Produto FOREIGN KEY (id_produto) REFERENCES Produtos(id),
@@ -112,16 +112,16 @@ create table Comentarios (
 -- 24/11 [21:42]
 CREATE TABLE Atributos_Produtos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(255) NULL UNIQUE,
-    valor VARCHAR(255) NULL,
+    nome VARCHAR(255) NOT NULL,
+    valor VARCHAR(255) NOT NULL,
     criado_em timestamp,
     -- FK
     id_produto INT,
     CONSTRAINT FK_Produto_Atributo FOREIGN KEY (id_produto) REFERENCES Produtos(id)
 );
 
--- updates 
-ALTER TABLE `tech_solutions`.`produtos` 
+-- updates
+ALTER TABLE `innovament`.`produtos`
 ADD COLUMN `status` INT NOT NULL DEFAULT 1 AFTER `likes`;
 
 INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `senha`, `cpf`, `data_nascimento`, `cidade`, `estado﻿`, `pais`, `telefone`, `criado_em`) VALUES (NULL, 'Alex Rodrigo Flores Condori', 'alex@gmail.com', '12345', '50128473', '2000-01-17', 'São Paulo', 'São Paulo', 'Brasil', '12140123', current_timestamp());
@@ -161,7 +161,43 @@ FROM Produtos JOIN Imagens ON Produtos.id = Imagens.id_produto JOIN Vendedores O
 
 select * from Imagens;
 
+use tech_solutions;
 
+SELECT
+	Produtos.id AS 'ID Produto',
+    Vendedores.nome_completo AS 'NOME VENDEDOR',
+    Produtos.nome AS 'NOME PRODUTO',
+    Produtos.preco AS 'PRECO',
+    Produtos.likes AS 'LIKES',
+    Produtos.status AS 'STATUS' ,
+    Imagens.caminho AS 'IMAGENS'
+FROM Produtos
+JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id
+LEFT JOIN Imagens ON Produtos.id = Imagens.id_produto
+WHERE Produtos.id_vendedor = 1;
 
+-- ---------------
+SELECT
+	Produtos.id,
+    Vendedores.nome_completo ,
+    Produtos.nome,
+    Produtos.preco,
+    Produtos.likes,
+    Produtos.status ,
+    Imagens.caminho
+FROM Produtos
+JOIN Vendedores ON Produtos.id_vendedor = Vendedores.id
+LEFT JOIN Imagens ON Produtos.id = Imagens.id_produto
+WHERE Produtos.id_vendedor = 2;
 
-
+-- Insert de Categorias ----------
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Admin Templates');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Corporate');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Creative');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Entertainment');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Mobile');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Personal');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Retail');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Tecnologias');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Shopping');
+INSERT INTO `innovament`.`categorias` (`nome`) VALUES ('Dashboards');

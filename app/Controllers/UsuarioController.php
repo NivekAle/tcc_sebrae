@@ -50,11 +50,38 @@ class UsuarioController
 					Base::Response("Cadastro realizado com sucesso.!", null, 1);
 				} else {
 					Base::Response("Atenção, Houve um erro ao fazer o cadastro, tente novamente mais tarde.", null, 0);
-					new Exception("Houve um erro ao fazer o cadastro, tente novamente mais tarde.");
 				}
 			}
 		} catch (Exception $th) {
-			throw $th;
+			Base::Response("Atenção, Houve um erro ao fazer o cadastro, tente novamente mais tarde.", null, 0);
+		}
+	}
+
+	public static function Editar($usuario_editado)
+	{
+		try {
+
+			if (!empty($usuario_editado)) {
+				$usuario_db = new Usuario();
+
+				$usuario_db->id = $usuario_editado["id"];
+				$usuario_db->nome_completo = $usuario_editado["nome"];
+				$usuario_db->cpf = $usuario_editado["cpf"];
+				$usuario_db->data_nascimento = $usuario_editado["data_nascimento"];
+				$usuario_db->email = $usuario_editado["email"];
+				$usuario_db->telefone = $usuario_editado["telefone"];
+				$usuario_db->cidade = $usuario_editado["cidade"];
+				$usuario_db->estado = $usuario_editado["estado"];
+				$usuario_db->pais = $usuario_editado["pais"];
+
+				if ($usuario_db->Editar()) {
+					Base::Response("Atenção, alterações salvar com sucesso, desloge para ver as alterações", null, 0);
+				}
+			} else {
+				throw new Exception("Erro ao salvar as alterações, tente novamente mais tarde");
+			}
+		} catch (Exception $error) {
+			Base::Response($error->getMessage(), null, 0);
 		}
 	}
 }
@@ -63,6 +90,9 @@ class UsuarioController
 switch ($_POST) {
 	case isset($_POST["usuario-cadastro"]):
 		UsuarioController::Cadastrar($_POST["usuario-cadastro"]);
+		break;
+	case isset($_POST["usuario-editado"]):
+		UsuarioController::Editar($_POST["usuario-editado"]);
 		break;
 	default:
 		header("Location: http://localhost/tcc/");

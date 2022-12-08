@@ -18,7 +18,7 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+
 
 <head>
 	<?php require_once("../partials/head.php"); ?>
@@ -63,7 +63,7 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 		<div class="hero">
 			<div class="container">
 				<div class="hero-content">
-					<h1>Adicionar um Produto</h1>
+					<h1>Adicionar Produto</h1>
 					<p>
 						Insira os dados do software/template e depois as imagens.
 					</p>
@@ -136,9 +136,9 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 										</div>
 										<button class="c-btn c-btn__secondary c-btn__secondary--outline" id="btn-adicionar-atributo" type="button">Adicionar</button>
 									</div>
+									<label for="produto-descricao" class="c-input__label">Descrição</label>
 									<span class="c-input">
-										<label for="produto-descricao" class="c-input__label">Descrição</label>
-										<textarea class="c-input c-input__primary" name="produto-descricao" id="produto-descricao" cols="70" rows="5"></textarea>
+										<textarea class="c-input__entry" name="produto-descricao" id="produto-descricao" cols="70" rows="5"></textarea>
 									</span>
 									<div class="my-3">
 										<button class="c-btn c-btn__primary" type="submit">
@@ -149,7 +149,7 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 							</div>
 							<div class="col-lg-6">
 								<h5>Prévia</h5>
-								<div class="produto-card produto-card__preview">
+								<div class="produto-card produto-card__preview" style="width: 255px;">
 									<div class="produto-card__header">
 										<div class="produto-card__image"></div>
 									</div>
@@ -171,33 +171,23 @@ $todas_categorias = Categoria::PegarTodasCategorias();
 										</p>
 									</div>
 								</div>
-								<hr>
 								<h5>Atributos</h5>
 								<div class="preview-atributos">
 									<table id="table-atributos">
 										<tbody>
-											<!-- <tr>
-												<td>Repository Link : </td>
-												<td>https://github.com/NivekAle/site_tcc</td>
-											</tr> -->
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
-					<!-- ! Previa do card -->
-					<!-- <div class="col-lg-4">
-						<hr>
-
-					</div> -->
 				</div>
 			</div>
 		</section>
 
 	</main>
+
+	<?php require_once("../partials/toast.php"); ?>
 
 	<?php require_once("../partials/assets.php"); ?>
 	<script type="module" src="http://localhost/tcc/public/js/adicionar-produto.js"></script>

@@ -5,6 +5,7 @@
 @import "../components/hero";
 @import "../components/input";
 @import "../components/button";
+@import "../components/toastAlert";
 
 .vendedor-actions {
 	background-color: #f9f9f9;
@@ -30,4 +31,9 @@
 
 .vendedor-painel {
 	padding: 30px 0px;
+}
+
+
+#modal-desativar-produto {
+	background-color: #3636365c;
 }

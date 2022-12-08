@@ -5,7 +5,7 @@ import { formatarPreco } from "./carrinho.js";
 // 	currency: 'BRL'
 // }).format(preco));
 
-function Busca(pesquisa_realizada) {
+function Busca() {
 	var query = location.search.slice(1);
 	var partes = query.split('&');
 	var data = {};
@@ -22,6 +22,7 @@ function Busca(pesquisa_realizada) {
 		dataType: "json",
 		success: function (response) {
 			console.log(response);
+
 			if (response.data.hasOwnProperty("body") && response.data.body) {
 				response.data.body.forEach(item => {
 					var tag_li = `
@@ -75,32 +76,3 @@ function Busca(pesquisa_realizada) {
 	});
 }
 Busca();
-
-
-// buscando filtros
-$("#btn-aplicar-filtros").click(function (e) {
-	e.preventDefault();
-	var filtros_selecionados = [];
-	// $('input[data-group="input-filtrar-produto"]').each(function (index, value) {
-	// 	if ($(value).is(":checked")) {
-	// 		filtros_selecionados.push(value.name);
-	// 		AplicarFiltros(filtros_selecionados);
-	// 		return;
-	// 	}
-	// });
-	// TODO : pegar todos os cheksboxs selecionados;
-});
-
-// aplicando filtros
-function AplicarFiltros(array_filtros_selecionados) {
-	// console.log(array_filtros_selecionados);
-	$.ajax({
-		type: "POST",
-		url: `http://localhost/tcc/app/Controllers/BuscaController.php`,
-		data: { filtros: array_filtros_selecionados },
-		dataType: "json",
-		success: function (response) {
-			console.log(response);
-		}
-	});
-}

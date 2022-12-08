@@ -10,6 +10,7 @@
 @import "../components/carrinho-card";
 
 .carrinho {
+	margin: 30px 0px;
 	&__header {
 		display: flex;
 		flex-direction: row;
@@ -43,5 +44,5 @@
 		text-align: center;
 	}
 
-	
+
 }
